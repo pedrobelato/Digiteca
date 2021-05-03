@@ -49,6 +49,9 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Controller\IObservada.cs" />
     <Compile Include="Controller\IObservador.cs" />
+    <Compile Include="DAL\Banco.cs" />
+    <Compile Include="DAL\BancoSQLServer.cs" />
+    <Compile Include="Model\Usuario.cs" />
     <Compile Include="Visao\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,8 +104,6 @@
   <ItemGroup>
     <None Include="Resources\iconfinder_cancel-2_309095.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,4 @@
-﻿using AutoPecas.Modelo;
-using AutoPecas.Persistencia;
-using AutoPecas.Visao;
-using Microsoft.Reporting.WinForms;
+﻿using AutoPecas.Persistencia;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,11 +11,6 @@ namespace AutoPecas.Controle
         private static Controller instancia = null;
         private static object trava = new object();
         private Banco bancoDeDados;
-        private Pedido pedido;
-        private Cliente cliente;
-        private ItemPedido produto;
-        FPrincipal telaPrincipal;
-        FClientes telaMostrarClientes;
 
         private Controller(TIPO_BD tipoDeBanco)
         {
@@ -40,15 +32,6 @@ namespace AutoPecas.Controle
             }
         }
 
-        public void mostrarTelaPrincipal()
-        {
-            ClienteBD cliBD = new ClienteBD(this.bancoDeDados);
-            PedidoBD pedBD = new PedidoBD(this.bancoDeDados);
-            telaPrincipal = new FPrincipal();
-            telaPrincipal.adicionarObservadores(this);
-            telaPrincipal.ShowDialog();
-        }
-
         public void notificar(string acao, params object[] parametros)
         {
             PedidoBD pedBD = new PedidoBD(bancoDeDados);
@@ -57,205 +40,6 @@ namespace AutoPecas.Controle
             PecaBD peca = new PecaBD(bancoDeDados);
             switch (acao)
             {
-                case "RPC":
-                    double vlrtotalCli = 0;
-                    DataTable dtRelPedidosCli = new DataTable();
-                    dtRelPedidosCli.Columns.Add("Código do Pedido");
-                    dtRelPedidosCli.Columns.Add("Data do Pedido");
-                    dtRelPedidosCli.Columns.Add("Data do Vencimento");
-                    dtRelPedidosCli.Columns.Add("Valor Total");
-                    foreach (Pedido pedido in pedBD.consultaPorCliente(parametros[0].ToString(), parametros[1].ToString(), parametros[2].ToString()))
-                    {
-                        DataRow linhaPed = dtRelPedidosCli.NewRow();
-                        linhaPed[0] = pedido.Ped_codigo;
-                        linhaPed[1] = pedido.Ped_date.ToString("dd/MM/yyyy");
-                        linhaPed[2] = pedido.Ped_date_vencimento.ToString("dd/MM/yyyy");
-                        linhaPed[3] = string.Format("R$  " + pedido.Ped_total_geral.ToString("F"));
-                        vlrtotalCli += pedido.Ped_total_geral;
-                        dtRelPedidosCli.Rows.Add(linhaPed);
-                    }
-                    telaPrincipal.dgvRelatorios.DataSource = dtRelPedidosCli;
-                    telaPrincipal.dgvRelatorios.Columns[0].Width = 190;
-                    telaPrincipal.dgvRelatorios.Columns[1].Width = 200;
-                    telaPrincipal.dgvRelatorios.Columns[2].Width = 200;
-                    telaPrincipal.dgvRelatorios.Columns[3].Width = 184;
-                    telaPrincipal.vlrTotalPedidos.Text = string.Format("R$  " + vlrtotalCli.ToString("F"));
-                    break;
-
-                case "RPP":
-                    double vlrtotal = 0;
-                    DataTable dtRelPedidos = new DataTable();
-                    dtRelPedidos.Columns.Add("Código do Pedido");
-                    dtRelPedidos.Columns.Add("Nome do Cliente");
-                    dtRelPedidos.Columns.Add("Data do Pedido");
-                    dtRelPedidos.Columns.Add("Data do Vencimento");
-                    dtRelPedidos.Columns.Add("Valor Total");
-                    foreach (Pedido pedido in pedBD.consulta(parametros[0].ToString(), parametros[1].ToString()))
-                    {
-                        DataRow linhaPed = dtRelPedidos.NewRow();
-                        linhaPed[0] = pedido.Ped_codigo;
-                        Cliente C = cliBD.consulta(pedido.Cli_codigo);
-                        linhaPed[1] = C.Cli_nome;
-                        linhaPed[2] = pedido.Ped_date.ToString("dd/MM/yyyy");
-                        linhaPed[3] = pedido.Ped_date_vencimento.ToString("dd/MM/yyyy");
-                        linhaPed[4] = string.Format("R$  " + pedido.Ped_total_geral.ToString("F"));
-                        vlrtotal += pedido.Ped_total_geral;
-                        dtRelPedidos.Rows.Add(linhaPed);
-                    }
-                    telaPrincipal.dgvRelatorios.DataSource = dtRelPedidos;
-                    telaPrincipal.dgvRelatorios.Columns[0].Width = 150;
-                    telaPrincipal.dgvRelatorios.Columns[1].Width = 234;
-                    telaPrincipal.dgvRelatorios.Columns[2].Width = 140;
-                    telaPrincipal.dgvRelatorios.Columns[3].Width = 140;
-                    telaPrincipal.dgvRelatorios.Columns[4].Width = 110;
-                    telaPrincipal.vlrTotalPedidos.Text = string.Format("R$  " + vlrtotal.ToString("F"));
-                    break;
-
-                case "EDP":
-                    if (MessageBox.Show("Deseja realmente excluir ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        DataGridViewRow linhaExcluir = (DataGridViewRow)parametros[0];
-                        peca.excluir(linhaExcluir.Cells[0].Value.ToString());
-                        MessageBox.Show("Dados Excluidos!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    break;
-                case "GDP":
-                    DataGridViewRow linhaGravar = (DataGridViewRow)parametros[0];
-                    peca.alterar(new Peca(linhaGravar.Cells[0].Value.ToString(),
-                                        linhaGravar.Cells[1].Value.ToString(),
-                                        linhaGravar.Cells[2].Value.ToString(),
-                                        Convert.ToInt32(linhaGravar.Cells[3].Value)));
-                    MessageBox.Show("Dados Gravados", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    break;
-                case "PP": // Pesquisar Peça
-                    DataTable dtPecas = new DataTable();
-                    dtPecas.Columns.Add("Nº Peça");
-                    dtPecas.Columns.Add("Nome da Peça");
-                    dtPecas.Columns.Add("Local Estoque");
-                    dtPecas.Columns.Add("Quantidade");
-                    if (telaPrincipal.radioPesqCodigo.Checked)
-                    {
-                        Peca pecas;
-                        pecas = peca.consulta(Convert.ToString(parametros[0]));
-                        if (pecas != null)
-                        {
-                            DataRow linhaP = dtPecas.NewRow();
-                            linhaP[0] = pecas.Num_peca;
-                            linhaP[1] = pecas.Nome_peca;
-                            linhaP[2] = pecas.Local_estoque;
-                            linhaP[3] = pecas.Qtde_estoque;
-                            dtPecas.Rows.Add(linhaP);
-                        }
-                        else
-                            MessageBox.Show("Peça Não Encontrada !", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        foreach (Peca pecas in peca.busca(Convert.ToString(parametros[0])))
-                        {
-                            DataRow linhaP = dtPecas.NewRow();
-                            linhaP[0] = pecas.Num_peca;
-                            linhaP[1] = pecas.Nome_peca;
-                            linhaP[2] = pecas.Local_estoque;
-                            linhaP[3] = pecas.Qtde_estoque;
-                            dtPecas.Rows.Add(linhaP);
-                        }
-                    }
-                    telaPrincipal.dgvPecas.DataSource = dtPecas;
-                    telaPrincipal.dgvPecas.Columns[0].Width = 170;
-                    telaPrincipal.dgvPecas.Columns[1].Width = 420;
-                    telaPrincipal.dgvPecas.Columns[2].Width = 100;
-                    telaPrincipal.dgvPecas.Columns[3].Width = 80;
-                    telaPrincipal.ContLinEncontradas.Text = (telaPrincipal.dgvPecas.RowCount).ToString();
-                    break;
-
-                case "VP":
-
-                    break;
-
-                case "SP":
-
-                    if (telaPrincipal.chbVerfica.Checked)
-                    {
-                        // Verificar Peca e completar o nome dinamicamente...
-                        /// no caso, ele completa o campo após a linha estiver preenchida
-                        foreach (DataGridViewRow lin in telaPrincipal.dgvPedido.Rows)
-                        {
-                            if (lin.Index + 1 < telaPrincipal.dgvPedido.Rows.Count)
-                            {
-                                Peca VerifPeca = peca.consulta(lin.Cells[0].Value.ToString());
-                                if (VerifPeca != null)
-                                {
-                                    lin.Cells[1].Value = VerifPeca.Nome_peca;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Peça: " + "'(" + lin.Cells[0].Value + ")'" + " não foi encontrada na Base de dados, portanto, foi inserida para efetuar o pedido!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    peca.incluir(new Peca(lin.Cells[0].Value.ToString(),
-                                                        lin.Cells[1].Value.ToString(), "Auto", 0));
-                                }
-                            }
-                        }
-                    }
-                    telaPrincipal.dgvPedido.Refresh();
-                    double total = 0;
-                    // SALVAR O PEDIDO
-                    foreach (DataGridViewRow linhaPed in telaPrincipal.dgvPedido.Rows)
-                    {
-                        if (linhaPed.Index + 1 < telaPrincipal.dgvPedido.Rows.Count)
-                        {
-                            total += Convert.ToDouble(linhaPed.Cells[5].Value);
-                        }
-                    }
-                    
-                    pedBD.incluir(new Pedido(parametros[0].ToString(),
-                                        Convert.ToDateTime(parametros[2].ToString()),
-                                        Convert.ToDateTime(parametros[3].ToString()),
-                                        total,
-                                        parametros[1].ToString()));
-
-                    foreach (DataGridViewRow linhaPed in telaPrincipal.dgvPedido.Rows)
-                    {
-                        if (linhaPed.Index + 1 < telaPrincipal.dgvPedido.Rows.Count)
-                        {
-                            produto = new ItemPedido(linhaPed.Cells[0].Value.ToString(),
-                                                linhaPed.Cells[1].Value.ToString(),
-                                                Convert.ToInt32(linhaPed.Cells[2].Value),
-                                                Convert.ToDouble(linhaPed.Cells[3].Value),
-                                                Convert.ToInt32(linhaPed.Cells[4].Value),
-                                                Convert.ToDouble(linhaPed.Cells[5].Value),
-                                                parametros[0].ToString());
-                            Peca pc = peca.consulta(linhaPed.Cells[0].Value.ToString());
-                            if (pc.Qtde_estoque - Convert.ToInt32(linhaPed.Cells[4].Value) >= 0)
-                            {
-                                pc.Qtde_estoque -= Convert.ToInt32(linhaPed.Cells[4].Value);
-                                peca.alterar(pc);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Cuidado! A peça: " + "'(" +pc.Num_peca + ")'" + " não possui quantidade suficiente no estoque!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            prodBD.incluir(produto);
-                        }
-                    }
-                    MessageBox.Show("Pedido Salvo !", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
-                    break;
-
-                case "EP": // excluir pedido
-                    if (MessageBox.Show("Deseja realmente excluir permanentemente esse pedido?", "Atenção!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                    {
-                        pedBD.excluir(Convert.ToString(parametros[0]));
-                        pedido = null;
-                        MessageBox.Show("Pedido Excluído com Sucesso", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    break;
-
-                case "CP": // consultar Pedido (Informar todos os detalhes)
-                    /// 1- Criar um form.
-                    /// 2- Buscar no banco as informações do cliente e exibir nos campos
-                    /// 3- Buscar no banco as informações das linhas dos produtos.
-                    /// 4- Exibir todas as linhas...
-                    break;
                 case "I":
                     if (cliBD.consulta(parametros[0].ToString()) == null)
                     {
