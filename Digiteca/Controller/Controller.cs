@@ -1,4 +1,4 @@
-﻿using AutoPecas.Persistencia;
+﻿using Digiteca.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,19 +8,20 @@ namespace Digiteca.Controller
 {
     public class Controller : IObservador
     {
-        private static Controller instancia = null;
-        private static object trava = new object();
-        private Banco bancoDeDados;
+        
+        //private static Controller instancia = null;
+        //private static object trava = new object();
+        //private Banco bancoDeDados;
 
-        private Controller(TIPO_BD tipoDeBanco)
+        /*private Controller(TIPO_BD tipoDeBanco)
         {
             if (tipoDeBanco == TIPO_BD.SQLSERVER)
             {
                 bancoDeDados = new BancoSQLServer();
             }
-        }
+        }*/
 
-        public static Controller obterInstancia()
+        /*public static Controller obterInstancia()
         {
             lock (trava)
             {
@@ -30,14 +31,14 @@ namespace Digiteca.Controller
                 }
                 return instancia;
             }
-        }
+        }*/
 
         public void notificar(string acao, params object[] parametros)
         {
-            /*PedidoBD pedBD = new PedidoBD(bancoDeDados);
-            ClienteBD cliBD = new ClienteBD(bancoDeDados);
-            ItemPedidoBD prodBD = new ItemPedidoBD(bancoDeDados);
-            PecaBD peca = new PecaBD(bancoDeDados);*/
+            //PedidoBD pedBD = new PedidoBD(bancoDeDados);
+            //ClienteBD cliBD = new ClienteBD(bancoDeDados);
+            //ItemPedidoBD prodBD = new ItemPedidoBD(bancoDeDados);
+            //PecaBD peca = new PecaBD(bancoDeDados);
             switch (acao)
             {
                 case "I":

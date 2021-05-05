@@ -92,8 +92,7 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Controller\IObservada.cs" />
     <Compile Include="Controller\IObservador.cs" />
-    <Compile Include="DAL\Banco.cs" />
-    <Compile Include="DAL\BancoSQLServer.cs" />
+    <Compile Include="DAL\MySQLPersistencia.cs" />
     <Compile Include="Model\Emprestimo_Devolucao.cs" />
     <Compile Include="Model\Estado.cs" />
     <Compile Include="Model\Exemplar.cs" />
