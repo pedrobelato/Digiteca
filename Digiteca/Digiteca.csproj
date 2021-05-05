@@ -60,6 +60,12 @@
     <Compile Include="Model\Reserva.cs" />
     <Compile Include="Model\Telefone.cs" />
     <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Visao\Acesso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Acesso.Designer.cs">
+      <DependentUpon>Acesso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visao\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="Visao\Reserva.Designer.cs">
       <DependentUpon>Reserva.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Visao\Acesso.resx">
+      <DependentUpon>Acesso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visao\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
