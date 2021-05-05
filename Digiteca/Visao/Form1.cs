@@ -66,6 +66,7 @@ namespace Digiteca
             pnlNav.Top = btnEmprestimo.Top;
             pnlNav.Left = btnEmprestimo.Left;
             btnEmprestimo.BackColor = Color.FromArgb(46, 51, 73);
+            abrirFormularioPanel<fmEmprestimo>();
         }
 
         private void btnReserva_Click(object sender, EventArgs e)
