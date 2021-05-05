@@ -1,20 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using Digiteca.Controller;
 
 namespace Digiteca.Visao
 {
-    public partial class fmReserva : Form
+    public partial class fmReserva : Form, IObservada
     {
+        private List<IObservador> listaObservadores = new List<IObservador>();
+        string acao = "";
         public fmReserva()
         {
             InitializeComponent();
+        }
+
+        public void adicionarObservadores(IObservador observador)
+        {
+            listaObservadores.Add(observador);
+        }
+
+        public void notificarObservadores()
+        {
+            foreach (IObservador observador in listaObservadores)
+            {
+                if (acao == "I")
+                {
+                    observador.notificar(acao); // ação e os parâmetros
+                }
+            }
         }
     }
 }

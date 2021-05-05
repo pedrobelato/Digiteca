@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-/*
-namespace AutoPecas.Controle
+
+namespace Digiteca.Controller
 {
-    class Controller : IObservador
+    public class Controller : IObservador
     {
         
         private static Controller instancia = null;
@@ -137,67 +137,10 @@ namespace AutoPecas.Controle
                     telaMostrarClientes.lmascara.Text = parametros[0].ToString();
                     telaMostrarClientes.ShowDialog();
                     break;
-
-                case "ImprimirREL":
-                    double totalIMP = 0;
-                    foreach (DataGridViewRow linhaPedIMP in telaPrincipal.dgvPedido.Rows)
-                    {
-                        if (linhaPedIMP.Index + 1 < telaPrincipal.dgvPedido.Rows.Count)
-                        {
-                            totalIMP += Convert.ToDouble(linhaPedIMP.Cells[5].Value);
-                        }
-                    }
-                    Pedido pedidoIMP = new Pedido(parametros[0].ToString(),
-                                        Convert.ToDateTime(parametros[2].ToString()),
-                                        Convert.ToDateTime(parametros[3].ToString()),
-                                        totalIMP,
-                                        parametros[1].ToString());
-                    Cliente cliIMP = cliBD.consulta(parametros[1].ToString());
-                    ReportParameter[] paramRel = new ReportParameter[7];
-                    /// nomeAutoPecas
-                    /// num_ped
-                    /// ped_data
-                    /// ped_data_vencimento
-                    /// ped_total_geral
-                    /// cli_nome
-                    /// cli_codigo
-                    paramRel[0] = new ReportParameter("nomeAutoPecas", "PEÇANOVA DISTRIBUIDORA LTDA.");
-                    paramRel[1] = new ReportParameter("num_ped", pedidoIMP.Ped_codigo);
-                    paramRel[2] = new ReportParameter("ped_data", pedidoIMP.Ped_date.ToString("dd/MM/yyyy"));
-                    paramRel[3] = new ReportParameter("ped_data_vencimento", pedidoIMP.Ped_date_vencimento.ToString("dd/MM/yyyy"));
-                    paramRel[4] = new ReportParameter("ped_total_geral", string.Format("R$  " + pedidoIMP.Ped_total_geral.ToString("F")));
-                    paramRel[5] = new ReportParameter("cli_nome", cliIMP.Cli_nome);
-                    paramRel[6] = new ReportParameter("cli_codigo", pedidoIMP.Cli_codigo);
-                    FRelatorio telaRelatorio = new FRelatorio(prodBD.todosItens(pedidoIMP.Ped_codigo), paramRel);
-                    telaRelatorio.Show();
-                    break;
                 default:
                     break;
             }
         }
-
-        /// Instruções para gerar relatórios ↓↓
-        /// 1 - Renomear o ReportViewer;
-        /// 2 - Torná-lo público
-        /// 3 - Não esquecer que "nomeFondeDeDados" é o nome do conjunto de dados definido no relatório
-        /// 4 - Não esquecer de tornar as classes públicas quando precisar.
-        /// 5 - Em relatório por agrupamento tabalha com tipos primitivos de dados,
-        /// portanto, é necessário haver uma serialização = [Serializable].
-
-        public void processaRelatorio(ReportViewer visualizador, string caminhoArquivoRelatorio, string nomeFonteDeDados, List<Pedido> dados, ReportParameter[] parametros)
-        {
-            visualizador.Reset();
-            visualizador.LocalReport.DataSources.Clear();
-            ReportDataSource rds = new ReportDataSource(nomeFonteDeDados, dados);
-            visualizador.LocalReport.DataSources.Add(rds);
-            visualizador.LocalReport.ReportPath = caminhoArquivoRelatorio;
-            if (parametros != null)
-            {
-                visualizador.LocalReport.SetParameters(parametros);
-            }
-            visualizador.RefreshReport();
-        }
         public enum TIPO_BD { SQLSERVER, ORACLE, MYSQL, FIREBIRD }
     }
 }
-*/

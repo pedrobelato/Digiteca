@@ -11,12 +11,13 @@ namespace Digiteca.Model
         private int _id;
         private string _nome;
         private string _cpf;
-        private string _telefone;
-        private string _logradouro;
+        private List<Telefone> _telefone;
+        private List<Logradouro> _logradouro;
+        private List<Reserva> _reservas;
 
         public Usuario(){}
 
-        public Usuario(int id, string nome, string cpf, string telefone, string logradouro)
+        public Usuario(int id, string nome, string cpf, List<Telefone> telefone, List<Logradouro> logradouro)
         {
             _id = id;
             _nome = nome;
@@ -25,10 +26,21 @@ namespace Digiteca.Model
             _logradouro = logradouro;
         }
 
+        public Usuario(int id, string nome, string cpf, List<Telefone> telefone, List<Logradouro> logradouro, List<Reserva> reservas)
+        {
+            _id = id;
+            _nome = nome;
+            _cpf = cpf;
+            _telefone = telefone;
+            _logradouro = logradouro;
+            _reservas = reservas;
+        }
+
         public int Id { get => _id; set => _id = value; }
         public string Nome { get => _nome; set => _nome = value; }
         public string Cpf { get => _cpf; set => _cpf = value; }
-        public string Telefone { get => _telefone; set => _telefone = value; }
-        public string Logradouro { get => _logradouro; set => _logradouro = value; }
+        public List<Telefone> Telefone { get => _telefone; set => _telefone = value; }
+        public List<Logradouro> Logradouro { get => _logradouro; set => _logradouro = value; }
+        public List<Reserva> Reservas { get => _reservas; set => _reservas = value; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AutoPecas.Controle
+namespace Digiteca.Controller
 {
     public interface IObservada
     {
