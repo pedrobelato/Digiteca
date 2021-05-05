@@ -13,11 +13,9 @@ namespace Digiteca.DAL
         MySqlConnection _conexao;
         MySqlCommand _comando;
 
-        public int UltimoId { get; set; }
-
         public MySQLPersistencia()
         {
-            _strCon = "Server=den1.mysql2.gear.host;Database=pedrobelato;Uid=pedrobelato;Pwd=pedro_;";
+            _strCon = "Server=den1.mysql6.gear.host;Database=digiteca;Uid=digiteca;Pwd=livroxx-;";
             _conexao = new MySqlConnection(_strCon);
             _comando = _conexao.CreateCommand();
         }
@@ -34,17 +32,6 @@ namespace Digiteca.DAL
         {
             _conexao.Close();
             _comando.CommandText = "select, insert, delete...";
-
-            /*
-            _comando.ExecuteNonQuery(); // insert, delete, update e procedures...
-            _comando.ExecuteReader(); // select de dados
-            _comando.ExecuteScalar(); // função de agragação ↓↓↓ (Útil para retornos únicos, ou seja, uma linha)
-
-                                        // select count(*) from...
-                                        // select max(xxx) from...
-                                        // select avg(xxx) from...
-
-            */
         }
 
         /// <summary>
@@ -61,9 +48,6 @@ namespace Digiteca.DAL
                 }
             }
             int linhasAfetadas = _comando.ExecuteNonQuery();
-
-            if (linhasAfetadas > 0)
-                UltimoId = Convert.ToInt32(_comando.LastInsertedId);
 
             return linhasAfetadas;
         }
