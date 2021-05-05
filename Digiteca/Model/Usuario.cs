@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Digiteca.Model
 {
-    class Usuario
+    public class Usuario
     {
+
     }
 }

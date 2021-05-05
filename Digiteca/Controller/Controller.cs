@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-
+/*
 namespace AutoPecas.Controle
 {
     class Controller : IObservador
     {
+        
         private static Controller instancia = null;
         private static object trava = new object();
         private Banco bancoDeDados;
@@ -199,3 +200,4 @@ namespace AutoPecas.Controle
         public enum TIPO_BD { SQLSERVER, ORACLE, MYSQL, FIREBIRD }
     }
 }
+*/
