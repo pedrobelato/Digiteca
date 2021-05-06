@@ -95,6 +95,7 @@
     <Compile Include="DAL\EmprestimoDAL.cs" />
     <Compile Include="DAL\MySQLPersistencia.cs" />
     <Compile Include="DAL\ReservaDAL.cs" />
+    <Compile Include="DAL\TelefoneDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="Model\Emprestimo_Devolucao.cs" />
     <Compile Include="Model\Estado.cs" />

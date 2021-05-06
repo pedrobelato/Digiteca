@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Digiteca.DAL
 {
-    class ReservaDAL
+    public class ReservaDAL
     {
         MySQLPersistencia _banco = new MySQLPersistencia();
 
