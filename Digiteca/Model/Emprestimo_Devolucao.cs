@@ -15,14 +15,13 @@ namespace Digiteca.Model
         private int _codSeqExemplar;
         private List<Multa> _multas;
 
-        public Emprestimo_Devolucao(int codEmpDev, DateTime data, string situacao, int codUsuario, int codSeqExemplar, List<Multa> multas)
+        public Emprestimo_Devolucao(int codEmpDev, DateTime data, string situacao, int codUsuario, int codSeqExemplar)
         {
             _codEmpDev = codEmpDev;
             _data = data;
             _situacao = situacao;
             _codUsuario = codUsuario;
             _codSeqExemplar = codSeqExemplar;
-            _multas = multas;
         }
 
         public int CodEmpDev { get => _codEmpDev; set => _codEmpDev = value; }
