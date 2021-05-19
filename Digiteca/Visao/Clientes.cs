@@ -20,7 +20,7 @@ namespace Digiteca.Visao
 
         private void btncFechar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)
