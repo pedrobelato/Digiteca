@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Digiteca.Controller;
 using Ubiety.Dns.Core.Records.NotUsed;
 
 namespace Digiteca.Visao
 {
-    public partial class fmClientes : Form
+    public partial class fmClientes : Form, IObservada
     {
+        private List<IObservador> listaObservadores = new List<IObservador>();
         public fmClientes()
         {
             InitializeComponent();
@@ -22,5 +24,15 @@ namespace Digiteca.Visao
         {
             this.Close();
         }
+        public void adicionarObservadores(IObservador observador)
+        {
+            listaObservadores.Add(observador);
+        }
+
+        public void notificarObservadores()
+        {
+
+        }
+
     }
 }
