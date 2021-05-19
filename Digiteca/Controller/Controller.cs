@@ -1,4 +1,5 @@
 ﻿using Digiteca.DAL;
+using Digiteca.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,45 +9,24 @@ namespace Digiteca.Controller
 {
     public class Controller : IObservador
     {
-        
-        //private static Controller instancia = null;
-        //private static object trava = new object();
-        //private Banco bancoDeDados;
-
-        /*private Controller(TIPO_BD tipoDeBanco)
-        {
-            if (tipoDeBanco == TIPO_BD.SQLSERVER)
-            {
-                bancoDeDados = new BancoSQLServer();
-            }
-        }*/
-
-        /*public static Controller obterInstancia()
-        {
-            lock (trava)
-            {
-                if (instancia == null)
-                {
-                    instancia = new Controller(TIPO_BD.SQLSERVER);
-                }
-                return instancia;
-            }
-        }*/
-
         public void notificar(string acao, params object[] parametros)
         {
-            //PedidoBD pedBD = new PedidoBD(bancoDeDados);
-            //ClienteBD cliBD = new ClienteBD(bancoDeDados);
-            //ItemPedidoBD prodBD = new ItemPedidoBD(bancoDeDados);
-            //PecaBD peca = new PecaBD(bancoDeDados);
+            TituloDAL tituloDAL = new TituloDAL();
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
+            bool sucesso;
             switch (acao)
             {
-                case "I":
- 
+                case "IR": // incluir Reserva
+                    Usuario usuario = new Usuario();
+                    (usuario, sucesso) = usuarioDAL.obterUsuario(parametros[0].ToString());
+                    tituloDAL.
+                    Reserva reserva = new(Convert.ToDateTime(parametros[1]).ToShortDateString(),
+                                            usuario.Id,
+                                            );
                     break;
 
-                case "A":
-
+                case "PU": // Pesquisar Usuário
+                    
                     break;
                 case "E":
 
@@ -68,6 +48,5 @@ namespace Digiteca.Controller
                     break;
             }
         }
-        public enum TIPO_BD { SQLSERVER, ORACLE, MYSQL, FIREBIRD }
     }
 }
