@@ -42,7 +42,7 @@ namespace Digiteca.Visao
             }
         }
 
-        private void btnPesqUsu_Click(object sender, System.EventArgs e)
+        private void BtnPesqUsu_Click(object sender, System.EventArgs e)
         {
             acao = "PU";
             notificarObservadores();
