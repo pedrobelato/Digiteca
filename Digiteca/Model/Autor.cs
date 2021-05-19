@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Digiteca.Model
 {
-    class Autor
+    public class Autor
     {
         private int _codAutor;
         private string _autor;

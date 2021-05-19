@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Digiteca.Model
 {
-    class Editora
+    public class Editora
     {
         private int _codEditora;
         private string _editora;
