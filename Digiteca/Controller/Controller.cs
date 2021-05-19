@@ -37,7 +37,7 @@ namespace Digiteca.Controller
                     dtLivros.Columns.Add("Quantidade");
 
                     dtLivros.Columns.Add($"{}");
-                    foreach (var item in tituloDAL.ObterTodos())
+                    foreach (var item in tituloDAL.ObterTodas(parametros[0].ToString()))
                     {
 
                     }
