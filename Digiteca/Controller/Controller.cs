@@ -51,14 +51,13 @@ namespace Digiteca.Controller
                     break;
                 case "PL": // pesquisar livro
                     DataTable dtLivros = new DataTable();
-                    Editora editora = new Editora();
                     dtLivros.Columns.Add("Código Livro");
                     dtLivros.Columns.Add("Titulo do Livro");
                     dtLivros.Columns.Add("Quantidade");
                     dtLivros.Columns.Add("Nome da Editora");
                     foreach (var item in tituloDAL.ObterTodas(parametros[0].ToString()))
                     {
-                        editora = editoraDAL.ObterPorID(item.CodEditora);
+                        Editora editora = editoraDAL.ObterPorID(item.CodEditora);
                         DataRow linhaPL = dtLivros.NewRow();
                         linhaPL[0] = item.CodTitulo;
                         linhaPL[1] = item.TituloLivro;
