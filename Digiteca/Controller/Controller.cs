@@ -10,7 +10,7 @@ namespace Digiteca.Controller
 {
     public class Controller : IObservador
     {
-        FReserva telaReserva;
+        fmReserva telaReserva;
         public void notificar(string acao, params object[] parametros)
         {
             TituloDAL tituloDAL = new TituloDAL();
