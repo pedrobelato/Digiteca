@@ -110,5 +110,14 @@ namespace Digiteca.Visao
             else
                 MessageBox.Show("Ainda há campos faltando preenchimento", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        private void btnPesqUsu_Click(object sender, System.EventArgs e)
+        {
+            var form = Application.OpenForms["fmClientes"];
+            if (form != null)
+                form.Close();
+            form = new fmClientes();
+            form.Show();
+        }
     }
 }

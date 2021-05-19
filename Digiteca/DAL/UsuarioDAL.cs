@@ -17,11 +17,11 @@ namespace Digiteca.DAL
             string msg = "";
             try
             {
-                string sql = "insert into usuario (id, nome,...) values (@id, @nome...)";
+                string sql = "insert into usuario (codUsuario, usuario) values (@id, @nome)";
 
                 Dictionary<string, object> ps = new Dictionary<string, object>();
-                ps.Add("@id", usuario.Id);
-                ps.Add("@nome", usuario.Cpf);
+                ps.Add("@codUsuario", usuario.Id);
+                ps.Add("@usuario", usuario.Cpf);
 
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql, ps);
