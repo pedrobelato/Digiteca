@@ -12,19 +12,19 @@ namespace Digiteca.DAL
     {
         MySQLPersistencia _banco = new MySQLPersistencia();
 
-        public List<Editora> ObterPorID(int id)
+        public Editora ObterPorID(int id)
         {
-            List<Editora> editora = new List<Editora>();
+            Editora editora = new Editora();
             string sql = $"select * from editora where codEditora = '{id}'";
             _banco.AbrirConexao();
             DataTable _dados = _banco.ExecutarSelect(sql);
-            for (int i = 0; i < _dados.Rows.Count; i++)
+            if(_dados.Rows.Count > 0)
             {
-                editora.Add(new Editora(Convert.ToInt32(_dados.Rows[i]["codEditora"]),
-                            _dados.Rows[i]["editora"].ToString(),
-                            _dados.Rows[i]["endereco"].ToString(),
-                            _dados.Rows[i]["telefone"].ToString(),
-                            _dados.Rows[i]["email"].ToString()));
+                editora = new Editora(Convert.ToInt32(_dados.Rows[0]["codEditora"]),
+                            _dados.Rows[0]["editora"].ToString(),
+                            _dados.Rows[0]["endereco"].ToString(),
+                            _dados.Rows[0]["telefone"].ToString(),
+                            _dados.Rows[0]["email"].ToString());
             }
             _banco.FecharConexao();
             return editora;
