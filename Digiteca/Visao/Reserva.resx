@@ -132,4 +132,27 @@
   <metadata name="Ano.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnPesqUsu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAAHYAAAB2AU57JggAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        AAABC0lEQVQ4T6XTzUpCQRjG8VOuXRaEa29BcNHeRZCQgrjMlZLgToSgCwhsWRBehUTegSspSBFd2lJa
+        hKAGif2fOYjH88mhB344rzLjmXfmWCFJoY0J1pijhyKOEJpLLDBAHTkU8IglXpCEb87xg1v4/VMaU3Th
+        +f0YQzybKjhaZIUrUzmSxQZnpgrPE17t4T7a74c9jIyaqcYepIW+PYyMGqttHKQMrZowVXgaGNvDfU6h
+        M8+bKjhq9hvuTeXKA2bQRQrKHb7h2+watviEnsS5HS3age7Jhb5wp4JfaBFdY23nC2rsCDrid+i4PdlN
+        1ucuJyihiRtk4PseXEOTq6aKmX9NVnQlnY8dI5b1B9GANGi0TA+uAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnPesqLivro.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAAHYAAAB2AU57JggAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        AAABC0lEQVQ4T6XTzUpCQRjG8VOuXRaEa29BcNHeRZCQgrjMlZLgToSgCwhsWRBehUTegSspSBFd2lJa
+        hKAGif2fOYjH88mhB344rzLjmXfmWCFJoY0J1pijhyKOEJpLLDBAHTkU8IglXpCEb87xg1v4/VMaU3Th
+        +f0YQzybKjhaZIUrUzmSxQZnpgrPE17t4T7a74c9jIyaqcYepIW+PYyMGqttHKQMrZowVXgaGNvDfU6h
+        M8+bKjhq9hvuTeXKA2bQRQrKHb7h2+watviEnsS5HS3age7Jhb5wp4JfaBFdY23nC2rsCDrid+i4PdlN
+        1ucuJyihiRtk4PseXEOTq6aKmX9NVnQlnY8dI5b1B9GANGi0TA+uAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

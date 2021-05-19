@@ -96,13 +96,14 @@
     <Compile Include="DAL\MySQLPersistencia.cs" />
     <Compile Include="DAL\ReservaDAL.cs" />
     <Compile Include="DAL\TelefoneDAL.cs" />
+    <Compile Include="DAL\TituloDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="Model\Autor.cs" />
     <Compile Include="Model\Editora.cs" />
     <Compile Include="Model\Emprestimo_Devolucao.cs" />
     <Compile Include="Model\Estado.cs" />
     <Compile Include="Model\Exemplar.cs" />
-    <Compile Include="Model\Livro.cs" />
+    <Compile Include="Model\Titulo.cs" />
     <Compile Include="Model\Logradouro.cs" />
     <Compile Include="Model\Multa.cs" />
     <Compile Include="Model\Reserva.cs" />

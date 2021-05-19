@@ -1,6 +1,7 @@
 ﻿using Digiteca.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,32 @@ namespace Digiteca.DAL
                 msg = "Não foi possível salvar! Tente novamente.";
             }
             return (linhasAfetadas, msg);
+        }
+
+        public (Usuario, bool) obterUsuario(string nome)
+        {
+            bool sucesso;
+            Usuario usuario = new Usuario();
+            try
+            {
+                string sql = $"SELECT * FROM usuario where nome = '{nome}'";
+
+                _banco.AbrirConexao();
+                DataTable dados = _banco.ExecutarSelect(sql);
+                if (dados.Rows.Count > 0)
+                {
+                    usuario = new Usuario(Convert.ToInt32(dados.Rows[0]["codUsuario"]),
+                                                    dados.Rows[0]["usuario"].ToString(),
+                                                    dados.Rows[0]["cpf"].ToString());
+                }
+                _banco.FecharConexao();
+                sucesso = true;
+            }
+            catch
+            {
+                sucesso = false;
+            }
+            return (usuario, sucesso);
         }
     }
 }
