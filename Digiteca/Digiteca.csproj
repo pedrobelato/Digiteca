@@ -114,6 +114,12 @@
     <Compile Include="Visao\Acesso.Designer.cs">
       <DependentUpon>Acesso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visao\Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Clientes.Designer.cs">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visao\Emprestimo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="Visao\Acesso.resx">
       <DependentUpon>Acesso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Clientes.resx">
+      <DependentUpon>Clientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\Emprestimo.resx">
       <DependentUpon>Emprestimo.cs</DependentUpon>

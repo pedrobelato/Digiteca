@@ -28,5 +28,14 @@ namespace Digiteca.Visao
                 }
             }
         }
+
+        private void btnPesqUsu_Click(object sender, System.EventArgs e)
+        {
+            var form = Application.OpenForms["fmClientes"];
+            if (form != null)
+                form.Close();
+            form = new fmClientes();
+            form.Show();
+        }
     }
 }

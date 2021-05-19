@@ -16,5 +16,14 @@ namespace Digiteca.Visao
         {
             InitializeComponent();
         }
+
+        private void btnPesqUsu_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms["fmClientes"];
+            if (form != null)
+                form.Close();
+            form = new fmClientes();
+            form.Show();
+        }
     }
 }
