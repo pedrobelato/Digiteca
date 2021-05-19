@@ -19,10 +19,10 @@ namespace Digiteca.Controller
                 case "IR": // incluir Reserva
                     Usuario usuario = new Usuario();
                     (usuario, sucesso) = usuarioDAL.obterUsuario(parametros[0].ToString());
-                    tituloDAL.
-                    Reserva reserva = new(Convert.ToDateTime(parametros[1]).ToShortDateString(),
-                                            usuario.Id,
-                                            );
+                    //tituloDAL.
+                    //Reserva reserva = new(Convert.ToDateTime(parametros[1]).ToShortDateString(),
+                    //                        usuario.Id,
+                    //                        );
                     break;
 
                 case "PU": // Pesquisar Usuário
