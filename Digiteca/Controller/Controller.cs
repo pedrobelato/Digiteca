@@ -9,6 +9,7 @@ namespace Digiteca.Controller
 {
     public class Controller : IObservador
     {
+        FReserva telaReserva;
         public void notificar(string acao, params object[] parametros)
         {
             TituloDAL tituloDAL = new TituloDAL();
@@ -32,15 +33,22 @@ namespace Digiteca.Controller
                     break;
                 case "PL": // pesquisar livro
                     DataTable dtLivros = new DataTable();
+                    Editora editora = new Editora();
                     dtLivros.Columns.Add("Código Livro");
                     dtLivros.Columns.Add("Titulo do Livro");
                     dtLivros.Columns.Add("Quantidade");
-
-                    dtLivros.Columns.Add($"{}");
+                    dtLivros.Columns.Add("Nome da Editora");
                     foreach (var item in tituloDAL.ObterTodas(parametros[0].ToString()))
                     {
-
+                        editora = editoraDAL.ObterPorID(item.CodEditora);
+                        DataRow linhaPL = dtLivros.NewRow();
+                        linhaPL[0] = item.CodTitulo;
+                        linhaPL[1] = item.TituloLivro;
+                        linhaPL[2] = item.Quantidade;
+                        linhaPL[3] = editora.editora;
+                        dtLivros.Rows.Add(linhaPL);
                     }
+                    telaReserva.dgvTabLivro.DataSource = dtLivros;
                     break;
 
                 case "M":
