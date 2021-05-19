@@ -33,18 +33,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvTabClientes = new System.Windows.Forms.DataGridView();
-            this.cod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefone1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefone2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbClientes = new System.Windows.Forms.Label();
             this.btncFechar = new System.Windows.Forms.Button();
+            this.mascara = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvTabClientes
             // 
+            this.dgvTabClientes.AllowUserToAddRows = false;
             this.dgvTabClientes.AllowUserToDeleteRows = false;
             this.dgvTabClientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
             this.dgvTabClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -57,12 +54,6 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvTabClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTabClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTabClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cod,
-            this.nome,
-            this.cpf,
-            this.telefone1,
-            this.telefone2});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -98,46 +89,16 @@
             this.dgvTabClientes.Size = new System.Drawing.Size(618, 214);
             this.dgvTabClientes.TabIndex = 17;
             // 
-            // cod
-            // 
-            this.cod.HeaderText = "Código";
-            this.cod.Name = "cod";
-            this.cod.ReadOnly = true;
-            // 
-            // nome
-            // 
-            this.nome.HeaderText = "Nome";
-            this.nome.Name = "nome";
-            this.nome.ReadOnly = true;
-            // 
-            // cpf
-            // 
-            this.cpf.HeaderText = "CPF";
-            this.cpf.Name = "cpf";
-            this.cpf.ReadOnly = true;
-            // 
-            // telefone1
-            // 
-            this.telefone1.HeaderText = "Telefone 01";
-            this.telefone1.Name = "telefone1";
-            this.telefone1.ReadOnly = true;
-            // 
-            // telefone2
-            // 
-            this.telefone2.HeaderText = "Telefone 02";
-            this.telefone2.Name = "telefone2";
-            this.telefone2.ReadOnly = true;
-            // 
             // lbClientes
             // 
             this.lbClientes.AutoSize = true;
             this.lbClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.lbClientes.Location = new System.Drawing.Point(12, 9);
+            this.lbClientes.Location = new System.Drawing.Point(24, 9);
             this.lbClientes.Name = "lbClientes";
-            this.lbClientes.Size = new System.Drawing.Size(325, 24);
+            this.lbClientes.Size = new System.Drawing.Size(219, 24);
             this.lbClientes.TabIndex = 27;
-            this.lbClientes.Text = "Resultado da busca:  NomeDoCliente";
+            this.lbClientes.Text = "Resultado da busca por: ";
             // 
             // btncFechar
             // 
@@ -155,6 +116,16 @@
             this.btncFechar.UseVisualStyleBackColor = true;
             this.btncFechar.Click += new System.EventHandler(this.btncFechar_Click);
             // 
+            // mascara
+            // 
+            this.mascara.AutoSize = true;
+            this.mascara.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mascara.ForeColor = System.Drawing.Color.Red;
+            this.mascara.Location = new System.Drawing.Point(249, 9);
+            this.mascara.Name = "mascara";
+            this.mascara.Size = new System.Drawing.Size(0, 24);
+            this.mascara.TabIndex = 27;
+            // 
             // fmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +133,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(642, 290);
             this.Controls.Add(this.btncFechar);
+            this.Controls.Add(this.mascara);
             this.Controls.Add(this.lbClientes);
             this.Controls.Add(this.dgvTabClientes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -175,14 +147,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvTabClientes;
         private System.Windows.Forms.Label lbClientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telefone1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telefone2;
         private System.Windows.Forms.Button btncFechar;
+        public System.Windows.Forms.DataGridView dgvTabClientes;
+        public System.Windows.Forms.Label mascara;
     }
 }
