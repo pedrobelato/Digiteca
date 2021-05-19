@@ -62,18 +62,18 @@ namespace Digiteca.DAL
 
         public List<Usuario> ObterPorNome(string nome)
         {
-            List<Usuario> usuario = new List<Usuario>();
+            List<Usuario> usuarios = new List<Usuario>();
             string sql = $"select * from usuario where nome = '{nome}'";
             _banco.AbrirConexao();
             DataTable dados = _banco.ExecutarSelect(sql);
             for (int i = 0; i < dados.Rows.Count; i++)
             {
-                usuario.Add(new Usuario(Convert.ToInt32(dados.Rows[i]["codUsuario"]),
+                usuarios.Add(new Usuario(Convert.ToInt32(dados.Rows[i]["codUsuario"]),
                                                     dados.Rows[i]["usuario"].ToString(),
                                                     dados.Rows[i]["cpf"].ToString()));
             }
             _banco.FecharConexao();
-            return usuario;
+            return usuarios;
         }
     }
 }
