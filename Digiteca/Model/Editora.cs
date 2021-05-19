@@ -22,6 +22,9 @@ namespace Digiteca.Model
             _telefone = telefone;
             _email = email;
         }
+        public Editora()
+        {
+        }
 
         public int codEditora { get => _codEditora; set => _codEditora = value; }
         public string editora { get => _editora; set => _editora = value; }
