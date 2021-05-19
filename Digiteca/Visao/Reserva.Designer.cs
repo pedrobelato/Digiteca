@@ -44,12 +44,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbPesqUsuario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.dtpDataReserva = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnPesqUsu = new System.Windows.Forms.Button();
             this.btnPesqLivro = new System.Windows.Forms.Button();
-            this.dtpDataReserva = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabLivro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -196,12 +196,31 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "Data da Reserva";
             // 
+            // dtpDataReserva
+            // 
+            this.dtpDataReserva.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataReserva.Location = new System.Drawing.Point(591, 410);
+            this.dtpDataReserva.Name = "dtpDataReserva";
+            this.dtpDataReserva.Size = new System.Drawing.Size(162, 20);
+            this.dtpDataReserva.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
+            this.label4.Location = new System.Drawing.Point(261, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(253, 35);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Realizar Reserva";
+            // 
             // btnCancelar
             // 
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Image = global::Digiteca.Properties.Resources.iconfinder_cancel_2_309095;
-            this.btnCancelar.Location = new System.Drawing.Point(414, 484);
+            this.btnCancelar.Location = new System.Drawing.Point(267, 484);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(85, 61);
             this.btnCancelar.TabIndex = 7;
@@ -213,7 +232,7 @@
             this.btnConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Image = global::Digiteca.Properties.Resources.iconfinder_check_326572;
-            this.btnConfirmar.Location = new System.Drawing.Point(267, 484);
+            this.btnConfirmar.Location = new System.Drawing.Point(419, 484);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(85, 61);
             this.btnConfirmar.TabIndex = 6;
@@ -247,25 +266,6 @@
             this.btnPesqLivro.TabIndex = 2;
             this.btnPesqLivro.UseVisualStyleBackColor = true;
             this.btnPesqLivro.Click += new System.EventHandler(this.btnPesqLivro_Click);
-            // 
-            // dtpDataReserva
-            // 
-            this.dtpDataReserva.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataReserva.Location = new System.Drawing.Point(591, 410);
-            this.dtpDataReserva.Name = "dtpDataReserva";
-            this.dtpDataReserva.Size = new System.Drawing.Size(162, 20);
-            this.dtpDataReserva.TabIndex = 17;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label4.Location = new System.Drawing.Point(261, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(253, 35);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Realizar Reserva";
             // 
             // fmReserva
             // 
