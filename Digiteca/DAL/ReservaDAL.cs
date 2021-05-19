@@ -18,13 +18,14 @@ namespace Digiteca.DAL
             string msg = "";
             try
             {
-                string sql = "insert into reserva (cod_reserva, data, cod_usuario, cod_seq_exemplar) values (@codRes, @data, @usu, @seq)";
+                string sql = "insert into reserva (codReserva, data, codUsuario, codTitulo, codEditora) values (@codRes, @data, @usu, @tit, @edi)";
 
                 Dictionary<string, object> ps = new Dictionary<string, object>();
-                ps.Add("@cod_reserva", reserva.CodReserva);
+                ps.Add("@codReserva", reserva.CodReserva);
                 ps.Add("@data", reserva.Data);
-                ps.Add("@cod_usuario", reserva.CodUsuario);
-                ps.Add("@cod_seq_exemplar", reserva.CodSeqExemplar);
+                ps.Add("@codUsuario", reserva.CodUsuario);
+                ps.Add("@codTitulo", reserva.CodTitulo);
+                ps.Add("@codEditora", reserva.CodEditora);
 
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql, ps);
@@ -46,10 +47,11 @@ namespace Digiteca.DAL
             DataTable _dados = _banco.ExecutarSelect(sql);
             for (int i = 0; i < _dados.Rows.Count; i++)
             {
-                reserva.Add(new Reserva(Convert.ToInt32(_dados.Rows[i]["cod_reserva"]),
+                reserva.Add(new Reserva(Convert.ToInt32(_dados.Rows[i]["codReserva"]),
                     Convert.ToDateTime(_dados.Rows[i]["data"]),
-                    Convert.ToInt32(_dados.Rows[i]["cod_usuario"]),
-                    Convert.ToInt32(_dados.Rows[i]["cod_seq_exemplar"])));
+                    Convert.ToInt32(_dados.Rows[i]["codUsuario"]),
+                    Convert.ToInt32(_dados.Rows[i]["codTitulo"]),
+                    Convert.ToInt32(_dados.Rows[i]["codEditora"])));
             }
             _banco.FecharConexao();
             return reserva;
@@ -62,13 +64,14 @@ namespace Digiteca.DAL
             string msg = "";
             try
             {
-                string sql = "update reserva set data = @data, cod_usuario = @usu, cod_seq_exemplar = @seq where cod_reserva = @cod";
+                string sql = "update reserva set data = @data, codUsuario = @usu, codTitulo = @tit, codEditora = @edi where codReserva = @cod";
 
                 Dictionary<string, object> ps = new Dictionary<string, object>();
-                ps.Add("@cod_reserva", reserva.CodReserva);
+                ps.Add("@codReserva", reserva.CodReserva);
                 ps.Add("@data", reserva.Data);
-                ps.Add("@cod_usuario", reserva.CodUsuario);
-                ps.Add("@cod_seq_exemplar", reserva.CodSeqExemplar);
+                ps.Add("@codUsuario", reserva.CodUsuario);
+                ps.Add("@codTitulo", reserva.CodTitulo);
+                ps.Add("@codEditora", reserva.CodEditora);
 
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql);

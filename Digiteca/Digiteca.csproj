@@ -97,6 +97,8 @@
     <Compile Include="DAL\ReservaDAL.cs" />
     <Compile Include="DAL\TelefoneDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
+    <Compile Include="Model\Autor.cs" />
+    <Compile Include="Model\Editora.cs" />
     <Compile Include="Model\Emprestimo_Devolucao.cs" />
     <Compile Include="Model\Estado.cs" />
     <Compile Include="Model\Exemplar.cs" />
