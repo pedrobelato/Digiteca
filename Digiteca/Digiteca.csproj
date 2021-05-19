@@ -92,6 +92,7 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Controller\IObservada.cs" />
     <Compile Include="Controller\IObservador.cs" />
+    <Compile Include="DAL\EditoraDAL.cs" />
     <Compile Include="DAL\EmprestimoDAL.cs" />
     <Compile Include="DAL\MySQLPersistencia.cs" />
     <Compile Include="DAL\ReservaDAL.cs" />

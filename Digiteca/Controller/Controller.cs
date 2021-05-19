@@ -13,6 +13,8 @@ namespace Digiteca.Controller
         {
             TituloDAL tituloDAL = new TituloDAL();
             UsuarioDAL usuarioDAL = new UsuarioDAL();
+            ReservaDAL reservaDAL = new ReservaDAL();
+            EditoraDAL editoraDAL = new EditoraDAL();
             bool sucesso;
             switch (acao)
             {
@@ -25,11 +27,20 @@ namespace Digiteca.Controller
                     //                        );
                     break;
 
-                case "PU": // Pesquisar Usuário
+                case "PU":
                     
                     break;
-                case "E":
+                case "PL": // pesquisar livro
+                    DataTable dtLivros = new DataTable();
+                    dtLivros.Columns.Add("Código Livro");
+                    dtLivros.Columns.Add("Titulo do Livro");
+                    dtLivros.Columns.Add("Quantidade");
 
+                    dtLivros.Columns.Add($"{}");
+                    foreach (var item in tituloDAL.ObterTodos())
+                    {
+
+                    }
                     break;
 
                 case "M":
