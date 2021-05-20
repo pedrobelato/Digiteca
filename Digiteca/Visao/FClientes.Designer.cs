@@ -88,6 +88,7 @@
             this.dgvTabClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTabClientes.Size = new System.Drawing.Size(618, 214);
             this.dgvTabClientes.TabIndex = 17;
+            this.dgvTabClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTabClientes_CellContentClick);
             // 
             // lbClientes
             // 
@@ -121,7 +122,7 @@
             this.mascara.AutoSize = true;
             this.mascara.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mascara.ForeColor = System.Drawing.Color.Red;
-            this.mascara.Location = new System.Drawing.Point(249, 9);
+            this.mascara.Location = new System.Drawing.Point(249, 12);
             this.mascara.Name = "mascara";
             this.mascara.Size = new System.Drawing.Size(0, 24);
             this.mascara.TabIndex = 27;

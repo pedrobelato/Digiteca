@@ -10,8 +10,22 @@ namespace Digiteca.Controller
 {
     public class Controller : IObservador
     {
+        private static Controller instancia = null;
+        private static object trava = new object();
         fmReserva telaReserva;
         fmClientes telaClientes;
+
+        public static Controller obterInstancia()
+        {
+            lock (trava)
+            {
+                if (instancia == null)
+                {
+                    instancia = new Controller();
+                }
+                return instancia;
+            }
+        }
         public void notificar(string acao, params object[] parametros)
         {
             TituloDAL tituloDAL = new TituloDAL();
@@ -30,7 +44,7 @@ namespace Digiteca.Controller
                     //                        );
                     break;
 
-                case "PU":
+                case "PU": // Pesquisar Usuário
                     DataTable dtUsuarioBusca = new DataTable();
                     dtUsuarioBusca.Columns.Add("CPF");
                     dtUsuarioBusca.Columns.Add("Código do Usuário");
@@ -48,6 +62,11 @@ namespace Digiteca.Controller
                     telaClientes.adicionarObservadores(this);
                     telaClientes.mascara.Text = parametros[0].ToString();
                     telaClientes.ShowDialog();
+                    break;
+
+                case "PUC": // pesquisar usuario consulta
+                    telaReserva.tbPesqUsuario.Text = parametros[0].ToString();
+                    telaReserva.codigoUsu.Text = parametros[1].ToString();
                     break;
                 case "PL": // pesquisar livro
                     DataTable dtLivros = new DataTable();

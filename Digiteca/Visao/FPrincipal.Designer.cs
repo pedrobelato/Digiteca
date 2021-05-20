@@ -131,28 +131,28 @@
             this.lbTexto.AutoSize = true;
             this.lbTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.lbTexto.Location = new System.Drawing.Point(73, 123);
+            this.lbTexto.Location = new System.Drawing.Point(69, 123);
             this.lbTexto.Name = "lbTexto";
-            this.lbTexto.Size = new System.Drawing.Size(33, 12);
+            this.lbTexto.Size = new System.Drawing.Size(43, 12);
             this.lbTexto.TabIndex = 2;
-            this.lbTexto.Text = "Texto";
+            this.lbTexto.Text = "Livroxx";
             // 
             // lbName
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.lbName.Location = new System.Drawing.Point(66, 97);
+            this.lbName.Location = new System.Drawing.Point(58, 97);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(49, 16);
+            this.lbName.Size = new System.Drawing.Size(66, 16);
             this.lbName.TabIndex = 1;
-            this.lbName.Text = "Nome";
+            this.lbName.Text = "Digiteca";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(60, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(57, 22);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(63, 63);
+            this.pictureBox1.Size = new System.Drawing.Size(66, 72);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
