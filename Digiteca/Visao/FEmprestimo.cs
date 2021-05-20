@@ -38,6 +38,34 @@ namespace Digiteca.Visao
 
         }
 
+        private Boolean validar()
+        {
+            if(tbPesqLivro.Text == "")
+            {
+                return false;
+            }
+            else 
+            if(tbUsuario.Text == "")
+            {
+                return false;
+            }
+            else
+            if(tbBibliotecaria.Text == "")
+            {
+                return false;
+            }
+            else
+            if(dtpDataEmprestimo.Value < DateTime.Now)
+            {
+                return false;
+            }
+            else
+            if(dtpDevolucao.Value < DateTime.Now)
+            {
+                return false;
+            }
+            return true;
+        }
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
 
