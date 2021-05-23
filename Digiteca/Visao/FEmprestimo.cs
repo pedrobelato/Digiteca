@@ -18,7 +18,7 @@ namespace Digiteca.Visao
         public fmEmprestimo()
         {
             InitializeComponent();
-            
+            dtpDataEmprestimo.Value = DateTime.Now;
             //adicionarObservadores();
             listaLivrosPesq.View = View.Details;
             listaLivrosPesq.Columns.Add("Código", 70);
