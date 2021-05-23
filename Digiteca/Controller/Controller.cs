@@ -10,31 +10,42 @@ namespace Digiteca.Controller
 {
     public class Controller : IObservador
     {
-        private static Controller instancia = null;
-        private static object trava = new object();
         fmReserva telaReserva;
         fmClientes telaClientes;
+        fmEmprestimo telaEmprestimo;
 
-        public static Controller obterInstancia()
+        private void mostrarTelaReserva()
         {
-            lock (trava)
-            {
-                if (instancia == null)
-                {
-                    instancia = new Controller();
-                }
-                return instancia;
-            }
+            telaReserva = new fmReserva();
+            telaReserva.adicionarObservadores(this);
+            telaReserva.ShowDialog();
         }
+
+        private void mostrarTelaEmprestimo()
+        {
+            telaClientes = new fmClientes();
+            telaClientes.adicionarObservadores(this);
+            telaClientes.ShowDialog();
+        }
+
         public void notificar(string acao, params object[] parametros)
         {
             TituloDAL tituloDAL = new TituloDAL();
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             ReservaDAL reservaDAL = new ReservaDAL();
             EditoraDAL editoraDAL = new EditoraDAL();
+            BibliotecaDAL bibliotecaDAL = new BibliotecaDAL();
             bool sucesso;
             switch (acao)
             {
+                case "Autenticar":
+                    string nome = "";
+                    (sucesso, nome) = bibliotecaDAL.Autenticar(Convert.ToInt32(parametros[0]), parametros[0].ToString());
+                    if (sucesso)
+                    {
+                        telaEmprestimo.tbBibliotecaria.Text = nome;
+                    }
+                    break;
                 case "IR": // incluir Reserva
                     Usuario usuario = new Usuario();
                     (usuario, sucesso) = usuarioDAL.obterUsuario(parametros[0].ToString());

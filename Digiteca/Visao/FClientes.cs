@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Digiteca.Controller;
 using Ubiety.Dns.Core.Records.NotUsed;
 
 namespace Digiteca.Visao
