@@ -46,7 +46,7 @@ namespace Digiteca.DAL
         public List<Titulo> ObterTodas(string nome)
         {
             List<Titulo> titulo = new List<Titulo>();
-            string sql = $"select * from reserva where titulo = '{nome}'";
+            string sql = $"select * from titulo where titulo = '{nome}'";
             _banco.AbrirConexao();
             DataTable dados = _banco.ExecutarSelect(sql);
             for (int i = 0; i < dados.Rows.Count; i++)

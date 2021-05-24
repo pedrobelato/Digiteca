@@ -195,8 +195,8 @@
         private System.Windows.Forms.Label lbTexto;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panelConteudo;
         private System.Windows.Forms.Button btnSair;
+        public System.Windows.Forms.Panel panelConteudo;
     }
 }
 

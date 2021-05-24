@@ -76,7 +76,7 @@ namespace Digiteca.Visao
             }
         }
 
-        private bool validar()
+        private bool ValidarCampos()
         {
             if(tbPesqLivro.Text == "")
             {
@@ -106,7 +106,13 @@ namespace Digiteca.Visao
         }
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-
+            if (ValidarCampos())
+            {
+                acao = "IE";
+                notificarObservadores();
+            }
+            else
+                MessageBox.Show("Ainda há campos faltando preenchimento", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void btnPesqLivro_Click(object sender, EventArgs e)

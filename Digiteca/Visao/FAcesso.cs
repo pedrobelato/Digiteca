@@ -14,6 +14,9 @@ namespace Digiteca.Visao
 {
     public partial class fmAcesso : Form
     {
+        //Controller.Controller controle = new Controller.Controller();
+
+        string acao = "";
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -35,9 +38,11 @@ namespace Digiteca.Visao
         {
             if (tbLogin.Text == "nome" && tbSenha.Text == "senha") //teste
             {
-                Hide();
-                fmMain var = new fmMain();
-                var.ShowDialog();
+                /* Hide();
+                 fmMain var = new fmMain();
+                 var.ShowDialog();
+                 Close();*/
+                Controller.Controller.obterInstancia().mostrarTelaPrincipal();
                 Close();
             }
             else
