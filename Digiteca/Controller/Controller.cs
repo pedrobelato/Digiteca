@@ -77,6 +77,7 @@ namespace Digiteca.Controller
 
                 case "PUC": // pesquisar usuario consulta
                     telaReserva.tbPesqUsuario.Text = parametros[0].ToString();
+                    telaReserva.pCodUsu.Visible = true;
                     telaReserva.codigoUsu.Text = parametros[1].ToString();
                     break;
                 case "PL": // pesquisar livro

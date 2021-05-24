@@ -59,9 +59,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
             this.label1.Location = new System.Drawing.Point(12, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 24);
+            this.label1.Size = new System.Drawing.Size(327, 24);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Pesquisar Livro";
+            this.label1.Text = "Digite o nome do livro para pesquisar:";
             // 
             // tbPesqLivro
             // 
@@ -72,7 +72,7 @@
             this.tbPesqLivro.Location = new System.Drawing.Point(12, 89);
             this.tbPesqLivro.Multiline = true;
             this.tbPesqLivro.Name = "tbPesqLivro";
-            this.tbPesqLivro.Size = new System.Drawing.Size(292, 20);
+            this.tbPesqLivro.Size = new System.Drawing.Size(327, 32);
             this.tbPesqLivro.TabIndex = 13;
             // 
             // label2
@@ -80,7 +80,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label2.Location = new System.Drawing.Point(490, 120);
+            this.label2.Location = new System.Drawing.Point(499, 130);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(176, 24);
             this.label2.TabIndex = 17;
@@ -91,11 +91,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label3.Location = new System.Drawing.Point(8, 337);
+            this.label3.Location = new System.Drawing.Point(8, 332);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 24);
+            this.label3.Size = new System.Drawing.Size(355, 24);
             this.label3.TabIndex = 18;
-            this.label3.Text = "Nome do usuário";
+            this.label3.Text = "Digite o nome do usuário para pesquisar:";
             // 
             // label4
             // 
@@ -136,10 +136,10 @@
             this.tbUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbUsuario.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.tbUsuario.Location = new System.Drawing.Point(12, 364);
+            this.tbUsuario.Location = new System.Drawing.Point(12, 359);
             this.tbUsuario.Multiline = true;
             this.tbUsuario.Name = "tbUsuario";
-            this.tbUsuario.Size = new System.Drawing.Size(250, 20);
+            this.tbUsuario.Size = new System.Drawing.Size(351, 32);
             this.tbUsuario.TabIndex = 22;
             // 
             // dtpDataEmprestimo
@@ -180,7 +180,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label7.Location = new System.Drawing.Point(104, 120);
+            this.label7.Location = new System.Drawing.Point(101, 130);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(171, 24);
             this.label7.TabIndex = 26;
@@ -191,10 +191,10 @@
             this.btnPesqUsu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesqUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPesqUsu.Image = global::Digiteca.Properties.Resources.buscar;
-            this.btnPesqUsu.Location = new System.Drawing.Point(267, 359);
+            this.btnPesqUsu.Location = new System.Drawing.Point(374, 359);
             this.btnPesqUsu.Margin = new System.Windows.Forms.Padding(2);
             this.btnPesqUsu.Name = "btnPesqUsu";
-            this.btnPesqUsu.Size = new System.Drawing.Size(37, 32);
+            this.btnPesqUsu.Size = new System.Drawing.Size(35, 32);
             this.btnPesqUsu.TabIndex = 29;
             this.btnPesqUsu.UseVisualStyleBackColor = true;
             this.btnPesqUsu.Click += new System.EventHandler(this.btnPesqUsu_Click);
@@ -226,10 +226,10 @@
             this.btnPesqLivro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesqLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPesqLivro.Image = global::Digiteca.Properties.Resources.buscar;
-            this.btnPesqLivro.Location = new System.Drawing.Point(309, 84);
+            this.btnPesqLivro.Location = new System.Drawing.Point(344, 89);
             this.btnPesqLivro.Margin = new System.Windows.Forms.Padding(2);
             this.btnPesqLivro.Name = "btnPesqLivro";
-            this.btnPesqLivro.Size = new System.Drawing.Size(37, 32);
+            this.btnPesqLivro.Size = new System.Drawing.Size(33, 32);
             this.btnPesqLivro.TabIndex = 14;
             this.btnPesqLivro.UseVisualStyleBackColor = true;
             this.btnPesqLivro.Click += new System.EventHandler(this.btnPesqLivro_Click);
