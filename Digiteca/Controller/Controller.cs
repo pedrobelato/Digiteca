@@ -23,9 +23,9 @@ namespace Digiteca.Controller
 
         public void mostrarTelaEmprestimo()
         {
-            telaClientes = new fmClientes();
-            telaClientes.adicionarObservadores(this);
-            telaClientes.ShowDialog();
+            telaEmprestimo = new fmEmprestimo();
+            telaEmprestimo.adicionarObservadores(this);
+            telaEmprestimo.ShowDialog();
         }
 
         public bool Autenticar(int id, string senha)
