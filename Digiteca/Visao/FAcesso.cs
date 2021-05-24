@@ -33,7 +33,8 @@ namespace Digiteca.Visao
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            if (tbLogin.Text == "nome" && tbSenha.Text == "senha") //teste
+            Controller.Controller controle = new Controller.Controller();
+            if (controle.Autenticar(Convert.ToInt32(tbLogin.Text), tbSenha2.Text)) //teste
             {
                 Hide();
                 fmMain var = new fmMain();

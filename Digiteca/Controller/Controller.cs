@@ -14,18 +14,26 @@ namespace Digiteca.Controller
         fmClientes telaClientes;
         fmEmprestimo telaEmprestimo;
 
-        private void mostrarTelaReserva()
+        public void mostrarTelaReserva()
         {
             telaReserva = new fmReserva();
             telaReserva.adicionarObservadores(this);
             telaReserva.ShowDialog();
         }
 
-        private void mostrarTelaEmprestimo()
+        public void mostrarTelaEmprestimo()
         {
             telaClientes = new fmClientes();
             telaClientes.adicionarObservadores(this);
             telaClientes.ShowDialog();
+        }
+
+        public bool Autenticar(int id, string senha)
+        {
+            bool sucesso;
+            BibliotecaDAL bibliotecaDAL = new BibliotecaDAL();
+            (sucesso, _) = bibliotecaDAL.Autenticar(id, senha);
+            return sucesso;
         }
 
         public void notificar(string acao, params object[] parametros)
@@ -38,14 +46,6 @@ namespace Digiteca.Controller
             bool sucesso;
             switch (acao)
             {
-                case "Autenticar":
-                    string nome = "";
-                    (sucesso, nome) = bibliotecaDAL.Autenticar(Convert.ToInt32(parametros[0]), parametros[0].ToString());
-                    if (sucesso)
-                    {
-                        telaEmprestimo.tbBibliotecaria.Text = nome;
-                    }
-                    break;
                 case "IR": // incluir Reserva
                     Usuario usuario = new Usuario();
                     (usuario, sucesso) = usuarioDAL.obterUsuario(parametros[0].ToString());
