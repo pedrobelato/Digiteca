@@ -14,7 +14,6 @@ namespace Digiteca.Controller
         fmReserva telaReserva;
         fmClientes telaClientes;
         fmEmprestimo telaEmprestimo;
-        fmAcesso telaAcesso;
         fmMain telaPrincipal;
 
         private static Controller instancia = null;
@@ -61,18 +60,28 @@ namespace Digiteca.Controller
             }
         }
 
-        public void mostrarTelaPrincipal()
+        public void mostrarTelaPrincipal(string nome)
         {
             telaPrincipal = new fmMain();
             telaPrincipal.adicionarObservadores(this);
+            telaPrincipal.lbName.Text = nome;
             telaPrincipal.ShowDialog();
         }
 
         public void mostrarTelaEmprestimo()
         {
-            telaClientes = new fmClientes();
-            telaClientes.adicionarObservadores(this);
-            telaClientes.ShowDialog();
+            telaEmprestimo = new fmEmprestimo();
+            telaEmprestimo.adicionarObservadores(this);
+            telaEmprestimo.ShowDialog();
+        }
+
+        public (bool, string) Autenticar(int id, string senha)
+        {
+            bool sucesso;
+            string nome = "";
+            BibliotecaDAL bibliotecaDAL = new BibliotecaDAL();
+            (sucesso, nome) = bibliotecaDAL.Autenticar(id, senha);
+            return (sucesso, nome);
         }
 
         public void notificar(string acao, params object[] parametros)
@@ -85,14 +94,6 @@ namespace Digiteca.Controller
             bool sucesso;
             switch (acao)
             {
-                case "Autenticar":
-                    string nome = "";
-                    (sucesso, nome) = bibliotecaDAL.Autenticar(Convert.ToInt32(parametros[0]), parametros[0].ToString());
-                    if (sucesso)
-                    {
-                        telaEmprestimo.tbBibliotecaria.Text = nome;
-                    }
-                    break;
                 case "IR": // incluir Reserva
                     Usuario usuario = new Usuario();
                     (usuario, sucesso) = usuarioDAL.obterUsuario(parametros[0].ToString());

@@ -28,7 +28,6 @@ namespace Digiteca.Visao
                 {
                     observador.notificar(acao, tbPesqUsuario.Text,
                                                dtpDataReserva.Value,
-                                               codigoUsu.Text,
                                                dgvTabLivro.CurrentRow.Cells[0].Value.ToString(), // codigo do titulo
                                                dgvTabLivro.CurrentRow.Cells[1].Value.ToString()); // número do exemplar
                 }
@@ -95,7 +94,6 @@ namespace Digiteca.Visao
                         dgvTabLivro.Rows[i].DataGridView.Columns.Clear();
                     }
                     dtpDataReserva.Value = DateTime.Now;
-                    pCodUsu.Visible = false;
                 }
             }
             else

@@ -45,11 +45,7 @@
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnPesqUsu = new System.Windows.Forms.Button();
             this.btnPesqLivro = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pCodUsu = new System.Windows.Forms.Panel();
-            this.codigoUsu = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabLivro)).BeginInit();
-            this.pCodUsu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbPesqLivro
@@ -230,43 +226,12 @@
             this.btnPesqLivro.UseVisualStyleBackColor = true;
             this.btnPesqLivro.Click += new System.EventHandler(this.btnPesqLivro_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label5.Location = new System.Drawing.Point(12, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(172, 24);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Código do Usuário:";
-            // 
-            // pCodUsu
-            // 
-            this.pCodUsu.Controls.Add(this.codigoUsu);
-            this.pCodUsu.Controls.Add(this.label5);
-            this.pCodUsu.Location = new System.Drawing.Point(16, 449);
-            this.pCodUsu.Name = "pCodUsu";
-            this.pCodUsu.Size = new System.Drawing.Size(200, 86);
-            this.pCodUsu.TabIndex = 18;
-            // 
-            // codigoUsu
-            // 
-            this.codigoUsu.AutoSize = true;
-            this.codigoUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codigoUsu.ForeColor = System.Drawing.Color.White;
-            this.codigoUsu.Location = new System.Drawing.Point(80, 43);
-            this.codigoUsu.Name = "codigoUsu";
-            this.codigoUsu.Size = new System.Drawing.Size(0, 24);
-            this.codigoUsu.TabIndex = 13;
-            // 
             // fmReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(765, 577);
-            this.Controls.Add(this.pCodUsu);
             this.Controls.Add(this.dtpDataReserva);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
@@ -283,8 +248,6 @@
             this.Name = "fmReserva";
             this.Text = "Reserva";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabLivro)).EndInit();
-            this.pCodUsu.ResumeLayout(false);
-            this.pCodUsu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,8 +267,5 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.DataGridView dgvTabLivro;
         public System.Windows.Forms.TextBox tbPesqUsuario;
-        private System.Windows.Forms.Label label5;
-        public System.Windows.Forms.Label codigoUsu;
-        public System.Windows.Forms.Panel pCodUsu;
     }
 }

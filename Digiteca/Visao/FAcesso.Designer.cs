@@ -161,7 +161,7 @@
             this.lbSenha.AutoSize = true;
             this.lbSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSenha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.lbSenha.Location = new System.Drawing.Point(139, 204);
+            this.lbSenha.Location = new System.Drawing.Point(145, 204);
             this.lbSenha.Name = "lbSenha";
             this.lbSenha.Size = new System.Drawing.Size(76, 16);
             this.lbSenha.TabIndex = 0;
@@ -172,11 +172,11 @@
             this.lbLogin.AutoSize = true;
             this.lbLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.lbLogin.Location = new System.Drawing.Point(139, 112);
+            this.lbLogin.Location = new System.Drawing.Point(127, 112);
             this.lbLogin.Name = "lbLogin";
-            this.lbLogin.Size = new System.Drawing.Size(79, 16);
+            this.lbLogin.Size = new System.Drawing.Size(116, 16);
             this.lbLogin.TabIndex = 0;
-            this.lbLogin.Text = "Username";
+            this.lbLogin.Text = "Username ( ID )";
             // 
             // tbSenha
             // 
