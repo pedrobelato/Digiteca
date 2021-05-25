@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Digiteca.Visao;
 using Digiteca.Controller;
+using System.Collections.Generic;
 
 namespace Digiteca
 {

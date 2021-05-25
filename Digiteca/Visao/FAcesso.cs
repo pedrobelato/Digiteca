@@ -39,10 +39,6 @@ namespace Digiteca.Visao
             Controller.Controller controle = new Controller.Controller();
             if (controle.Autenticar(Convert.ToInt32(tbLogin.Text), tbSenha2.Text)) //teste
             {
-                /* Hide();
-                 fmMain var = new fmMain();
-                 var.ShowDialog();
-                 Close();*/
                 Controller.Controller.obterInstancia().mostrarTelaPrincipal();
                 Close();
             }
