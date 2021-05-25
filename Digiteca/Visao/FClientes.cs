@@ -32,7 +32,7 @@ namespace Digiteca.Visao
             {
                 DataGridViewRow linha = dgvTabClientes.CurrentRow;
                 observador.notificar(acao, linha.Cells[2].Value.ToString(), // nome Usuário
-                                            linha.Cells[1].Value.ToString()); // código
+                                            linha.Cells[0].Value.ToString()); // código
             }
             this.Close();
         }
@@ -42,7 +42,7 @@ namespace Digiteca.Visao
             this.Close();
         }
 
-        private void dgvTabClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTabClientes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             acao = "PUC";
             if (!dgvTabClientes.CurrentRow.IsNewRow)

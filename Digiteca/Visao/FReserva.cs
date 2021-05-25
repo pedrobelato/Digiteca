@@ -13,6 +13,8 @@ namespace Digiteca.Visao
         {
             InitializeComponent();
             dtpDataReserva.Value = DateTime.Now;
+            lbCpf.Visible = false;
+            lbCodUsu.Visible = false;
         }
 
         public void adicionarObservadores(IObservador observador)
@@ -26,10 +28,9 @@ namespace Digiteca.Visao
             {
                 if (acao == "IR")
                 {
-                    observador.notificar(acao, tbPesqUsuario.Text,
-                                               dtpDataReserva.Value,
+                    observador.notificar(acao, lbCodUsu.Text,
                                                dgvTabLivro.CurrentRow.Cells[0].Value.ToString(), // codigo do titulo
-                                               dgvTabLivro.CurrentRow.Cells[1].Value.ToString()); // número do exemplar
+                                               dtpDataReserva.Value); // número do exemplar
                 }
                 else if (acao == "PU")
                 {
@@ -40,12 +41,6 @@ namespace Digiteca.Visao
                     observador.notificar(acao, tbPesqLivro.Text);
                 }
             }
-        }
-
-        private void BtnPesqUsu_Click(object sender, System.EventArgs e)
-        {
-            acao = "PU";
-            notificarObservadores();
         }
 
         private void btnPesqLivro_Click(object sender, EventArgs e)
@@ -113,11 +108,22 @@ namespace Digiteca.Visao
 
         private void btnPesqUsu_Click(object sender, System.EventArgs e)
         {
-            var form = Application.OpenForms["fmClientes"];
-            if (form != null)
-                form.Close();
-            form = new fmClientes();
-            form.Show();
+            acao = "PU";
+            notificarObservadores();
+        }
+
+        private void tbPesqUsuario_TextChanged(object sender, EventArgs e)
+        {
+            lbCpf.Visible = false;
+            lbCodUsu.Visible = false;
+        }
+
+        private void dgvTabLivro_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!dgvTabLivro.CurrentRow.IsNewRow)
+            {
+                tbPesqLivro.Text = dgvTabLivro.CurrentRow.Cells[1].Value.ToString();
+            }
         }
     }
 }

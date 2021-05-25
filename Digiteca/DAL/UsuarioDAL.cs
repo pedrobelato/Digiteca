@@ -17,11 +17,12 @@ namespace Digiteca.DAL
             string msg = "";
             try
             {
-                string sql = "insert into usuario (codUsuario, usuario) values (@id, @nome)";
+                string sql = "insert into usuario (codUsuario, usuario, cpf) values (@id, @nome, cpf)";
 
                 Dictionary<string, object> ps = new Dictionary<string, object>();
                 ps.Add("@codUsuario", usuario.Id);
-                ps.Add("@usuario", usuario.Cpf);
+                ps.Add("@usuario", usuario.Nome);
+                ps.Add("@cpf", usuario.Cpf);
 
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql, ps);
@@ -34,13 +35,12 @@ namespace Digiteca.DAL
             return (linhasAfetadas, msg);
         }
 
-        public (Usuario, bool) obterUsuario(string nome)
+        public Usuario ObterPorCPF(string cpf)
         {
-            bool sucesso;
             Usuario usuario = new Usuario();
             try
             {
-                string sql = $"SELECT * FROM usuario where nome = '{nome}'";
+                string sql = $"select * from digiteca.usuario where cpf = '{cpf}'";
 
                 _banco.AbrirConexao();
                 DataTable dados = _banco.ExecutarSelect(sql);
@@ -51,19 +51,15 @@ namespace Digiteca.DAL
                                                     dados.Rows[0]["cpf"].ToString());
                 }
                 _banco.FecharConexao();
-                sucesso = true;
             }
-            catch
-            {
-                sucesso = false;
-            }
-            return (usuario, sucesso);
+            catch{}
+            return usuario;
         }
 
         public List<Usuario> ObterPorNome(string nome)
         {
             List<Usuario> usuarios = new List<Usuario>();
-            string sql = $"select * from usuario where nome = '{nome}'";
+            string sql = $"SELECT * FROM digiteca.usuario where usuario like '%{nome}%'";
             _banco.AbrirConexao();
             DataTable dados = _banco.ExecutarSelect(sql);
             for (int i = 0; i < dados.Rows.Count; i++)

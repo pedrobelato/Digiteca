@@ -9,32 +9,36 @@ namespace Digiteca.DAL
     {
         MySQLPersistencia _banco = new MySQLPersistencia();
 
-        public (int, string) GravarReserva(Reserva reserva)
+        public bool GravarReserva(Reserva reserva)
         {
-            int linhasAfetadas = 0;
-            string msg = "";
+            bool sucesso;
+            int linhasAfetadas;
             try
             {
-                string sql = "insert into reserva (codReserva, data, codUsuario, codTitulo, codEditora) values (@codRes, @data, @usu, @tit, @edi)";
+                string sql = "insert into reserva (codUsuario, codTitulo, data) values (@usu, @tit, @data)";
 
                 Dictionary<string, object> ps = new Dictionary<string, object>();
-                ps.Add("@codReserva", reserva.CodReserva);
-                ps.Add("@data", reserva.Data);
-                ps.Add("@codUsuario", reserva.CodUsuario);
-                ps.Add("@codTitulo", reserva.CodTitulo);
-                ps.Add("@codEditora", reserva.CodEditora);
+                ps.Add("@usu", reserva.CodUsuario);
+                ps.Add("@tit", reserva.CodTitulo);
+                ps.Add("@data", reserva.Data.ToString("yyyy/MM/dd"));
 
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql, ps);
+                if (linhasAfetadas > 0)
+                {
+                    sucesso = true;
+                }
+                else
+                    sucesso = false;
                 _banco.FecharConexao();
             }
             catch
             {
-                msg = "Não foi possível salvar! Tente novamente.";
+                sucesso = false;
             }
-            return (linhasAfetadas, msg);
+            return sucesso;
         }
-
+        /*
 
         public List<Reserva> ObterTodas()
         {
@@ -81,5 +85,6 @@ namespace Digiteca.DAL
 
             return (linhasAfetadas, msg);
         }
+        */
     }
 }

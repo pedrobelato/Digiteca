@@ -91,16 +91,18 @@ namespace Digiteca.Controller
             ReservaDAL reservaDAL = new ReservaDAL();
             EditoraDAL editoraDAL = new EditoraDAL();
             BibliotecaDAL bibliotecaDAL = new BibliotecaDAL();
-            bool sucesso;
             switch (acao)
             {
                 case "IR": // incluir Reserva
-                    Usuario usuario = new Usuario();
-                    (usuario, sucesso) = usuarioDAL.obterUsuario(parametros[0].ToString());
-                    //tituloDAL.
-                    //Reserva reserva = new(Convert.ToDateTime(parametros[1]).ToShortDateString(),
-                    //                        usuario.Id,
-                    //                        );
+                    Usuario usuario = usuarioDAL.ObterPorCPF(parametros[0].ToString());
+                    if (reservaDAL.GravarReserva(new Reserva(Convert.ToDateTime(parametros[2]),
+                                                usuario.Id,
+                                                Convert.ToInt32(parametros[1]))))
+                    {
+                        MessageBox.Show("Sua Reserva foi Gravada!","Sucesso!",MessageBoxButtons.OK, MessageBoxIcon.None);
+                    }
+                    else
+                        MessageBox.Show("Erro durante a gravação...","Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
 
                 case "PU": // Pesquisar Usuário
@@ -118,15 +120,19 @@ namespace Digiteca.Controller
                     }
                     telaClientes = new fmClientes();
                     telaClientes.dgvTabClientes.DataSource = dtUsuarioBusca;
+                    telaClientes.dgvTabClientes.Columns[0].Width = 100;
+                    telaClientes.dgvTabClientes.Columns[1].Width = 80;
+                    telaClientes.dgvTabClientes.Columns[2].Width = 400;
                     telaClientes.adicionarObservadores(this);
                     telaClientes.mascara.Text = parametros[0].ToString();
                     telaClientes.ShowDialog();
                     break;
 
                 case "PUC": // pesquisar usuario consulta
-                    /*telaReserva.tbPesqUsuario.Text = parametros[0].ToString();
-                    telaReserva.pCodUsu.Visible = true;
-                    telaReserva.codigoUsu.Text = parametros[1].ToString();*/
+                    telaReserva.tbPesqUsuario.Text = parametros[0].ToString();
+                    telaReserva.lbCpf.Visible = true;
+                    telaReserva.lbCodUsu.Visible = true;
+                    telaReserva.lbCodUsu.Text = parametros[1].ToString();
                     break;
 
                 case "PL": // pesquisar livro
@@ -135,17 +141,21 @@ namespace Digiteca.Controller
                     dtLivros.Columns.Add("Titulo do Livro");
                     dtLivros.Columns.Add("Quantidade");
                     dtLivros.Columns.Add("Nome da Editora");
-                    foreach (var item in tituloDAL.ObterTodas(parametros[0].ToString()))
+                    foreach (Titulo tit in tituloDAL.ObterPorNome(parametros[0].ToString()))
                     {
-                        Editora editora = editoraDAL.ObterPorID(item.CodEditora);
+                        Editora editora = editoraDAL.ObterPorID(tit.CodEditora);
                         DataRow linhaPL = dtLivros.NewRow();
-                        linhaPL[0] = item.CodTitulo;
-                        linhaPL[1] = item.TituloLivro;
-                        linhaPL[2] = item.Quantidade;
+                        linhaPL[0] = tit.CodTitulo;
+                        linhaPL[1] = tit.TituloLivro;
+                        linhaPL[2] = tit.Quantidade;
                         linhaPL[3] = editora.editora;
                         dtLivros.Rows.Add(linhaPL);
                     }
                     telaReserva.dgvTabLivro.DataSource = dtLivros;
+                    telaReserva.dgvTabLivro.Columns[0].Width = 100;
+                    telaReserva.dgvTabLivro.Columns[1].Width = 350;
+                    telaReserva.dgvTabLivro.Columns[2].Width = 80;
+                    telaReserva.dgvTabLivro.Columns[3].Width = 185;
                     break;
 
                 case "M":
