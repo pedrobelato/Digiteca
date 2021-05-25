@@ -34,7 +34,7 @@ namespace Digiteca.Visao
                 }
                 else if (acao == "PU")
                 {
-                    observador.notificar(acao, tbPesqUsuario.Text);
+                    observador.notificar(acao, 1, tbPesqUsuario.Text);
                 }
                 else if (acao == "PL")
                 {

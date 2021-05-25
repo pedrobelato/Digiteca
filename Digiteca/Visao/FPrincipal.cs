@@ -11,10 +11,7 @@ namespace Digiteca
 {
     public partial class fmMain : Form, IObservada
     {
-        //Controller.Controller controle = new Controller.Controller();
-
         private List<IObservador> listaObservadores = new List<IObservador>();
-        //controle.notificar("")
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -42,33 +39,8 @@ namespace Digiteca
             pnlNav.Height = btnReserva.Height;
             pnlNav.Top = btnReserva.Top;
             pnlNav.Left = btnReserva.Left;
-            //btnReserva.PerformClick();
-            //abrirFormularioPanel<fmReserva>();
         }
-
-        private void abrirFormularioPanel<MiForm>() where MiForm : Form, new()
-        {
-            Form formulario;
-            formulario = panelConteudo.Controls.OfType<MiForm>().FirstOrDefault();
-
-            if (formulario == null)
-            {
-                formulario = new MiForm();
-                formulario.TopLevel = false;
-                formulario.FormBorderStyle = FormBorderStyle.None;
-                formulario.Dock = DockStyle.Fill;
-                panelConteudo.Controls.Add(formulario);
-                panelConteudo.Tag = formulario;
-                formulario.Show();
-                formulario.BringToFront();
-            }
-            else
-            {
-                if (formulario.WindowState == FormWindowState.Minimized)
-                    formulario.WindowState = FormWindowState.Normal;
-                formulario.BringToFront();
-            }
-        }
+        
 
         private void btnEmprestimo_Click(object sender, EventArgs e)
         {
@@ -76,7 +48,7 @@ namespace Digiteca
             pnlNav.Top = btnEmprestimo.Top;
             pnlNav.Left = btnEmprestimo.Left;
             btnEmprestimo.BackColor = Color.FromArgb(46, 51, 73);
-            abrirFormularioPanel<fmEmprestimo>();
+            Controller.Controller.obterInstancia().abrirEmprestimo<fmEmprestimo>();
         }
 
         private void btnReserva_Click(object sender, EventArgs e)
@@ -85,8 +57,6 @@ namespace Digiteca
             pnlNav.Top = btnReserva.Top;
             pnlNav.Left = btnReserva.Left;
             btnReserva.BackColor = Color.FromArgb(46, 51, 73);
-            //controle.abrirFormularioPanel<fmReserva>();
-            //Controller.Controller.obterInstancia().mostrarTelaReserva(new fmReserva());
             Controller.Controller.obterInstancia().abrirReserva<fmReserva>();
         }
 

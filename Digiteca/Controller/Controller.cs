@@ -34,7 +34,6 @@ namespace Digiteca.Controller
             }
         }
 
-
         public void abrirReserva<MiForm>() where MiForm : Form, new()
         {
             Form formulario;
@@ -60,19 +59,37 @@ namespace Digiteca.Controller
             }
         }
 
+        public void abrirEmprestimo<MiForm>() where MiForm : Form, new()
+        {
+            Form formulario;
+            formulario = telaPrincipal.panelConteudo.Controls.OfType<MiForm>().FirstOrDefault();
+            if (formulario == null)
+            {
+                formulario = new MiForm();
+                formulario.TopLevel = false;
+                formulario.FormBorderStyle = FormBorderStyle.None;
+                formulario.Dock = DockStyle.Fill;
+                telaPrincipal.panelConteudo.Controls.Add(formulario);
+                telaPrincipal.panelConteudo.Tag = formulario;
+                formulario.Show();
+                formulario.BringToFront();
+                telaEmprestimo = (fmEmprestimo)formulario;
+                telaEmprestimo.adicionarObservadores(this);
+            }
+            else
+            {
+                if (formulario.WindowState == FormWindowState.Minimized)
+                    formulario.WindowState = FormWindowState.Normal;
+                formulario.BringToFront();
+            }
+        }
+
         public void mostrarTelaPrincipal(string nome)
         {
             telaPrincipal = new fmMain();
             telaPrincipal.adicionarObservadores(this);
             telaPrincipal.lbName.Text = nome;
             telaPrincipal.ShowDialog();
-        }
-
-        public void mostrarTelaEmprestimo()
-        {
-            telaEmprestimo = new fmEmprestimo();
-            telaEmprestimo.adicionarObservadores(this);
-            telaEmprestimo.ShowDialog();
         }
 
         public (bool, string) Autenticar(int id, string senha)
@@ -94,10 +111,10 @@ namespace Digiteca.Controller
             switch (acao)
             {
                 case "IR": // incluir Reserva
-                    Usuario usuario = usuarioDAL.ObterPorCPF(parametros[0].ToString());
-                    if (reservaDAL.GravarReserva(new Reserva(Convert.ToDateTime(parametros[2]),
+                    Usuario usuario = usuarioDAL.ObterPorCPF(parametros[1].ToString());
+                    if (reservaDAL.GravarReserva(new Reserva(Convert.ToDateTime(parametros[3]),
                                                 usuario.Id,
-                                                Convert.ToInt32(parametros[1]))))
+                                                Convert.ToInt32(parametros[2]))))
                     {
                         MessageBox.Show("Sua Reserva foi Gravada!","Sucesso!",MessageBoxButtons.OK, MessageBoxIcon.None);
                     }
@@ -110,7 +127,7 @@ namespace Digiteca.Controller
                     dtUsuarioBusca.Columns.Add("CPF");
                     dtUsuarioBusca.Columns.Add("Código do Usuário");
                     dtUsuarioBusca.Columns.Add("Nome do Usuário");
-                    foreach (Usuario usu in usuarioDAL.ObterPorNome(parametros[0].ToString()))
+                    foreach (Usuario usu in usuarioDAL.ObterPorNome(parametros[1].ToString()))
                     {
                         DataRow linhaUsu = dtUsuarioBusca.NewRow();
                         linhaUsu[0] = usu.Cpf;
@@ -118,13 +135,13 @@ namespace Digiteca.Controller
                         linhaUsu[2] = usu.Nome;
                         dtUsuarioBusca.Rows.Add(linhaUsu);
                     }
-                    telaClientes = new fmClientes();
+                    telaClientes = new fmClientes((int)parametros[0]);
                     telaClientes.dgvTabClientes.DataSource = dtUsuarioBusca;
                     telaClientes.dgvTabClientes.Columns[0].Width = 100;
                     telaClientes.dgvTabClientes.Columns[1].Width = 80;
                     telaClientes.dgvTabClientes.Columns[2].Width = 400;
                     telaClientes.adicionarObservadores(this);
-                    telaClientes.mascara.Text = parametros[0].ToString();
+                    telaClientes.mascara.Text = parametros[1].ToString();
                     telaClientes.ShowDialog();
                     break;
 
@@ -133,6 +150,13 @@ namespace Digiteca.Controller
                     telaReserva.lbCpf.Visible = true;
                     telaReserva.lbCodUsu.Visible = true;
                     telaReserva.lbCodUsu.Text = parametros[1].ToString();
+                    break;
+
+                case "PUCE": // pesquisar usuario consulta para tela Emprestimo
+                    telaEmprestimo.tbUsuario.Text = parametros[0].ToString();
+                    telaEmprestimo.lbCpf.Visible = true;
+                    telaEmprestimo.lbCodUsu.Visible = true;
+                    telaEmprestimo.lbCodUsu.Text = parametros[1].ToString();
                     break;
 
                 case "PL": // pesquisar livro
@@ -157,19 +181,24 @@ namespace Digiteca.Controller
                     telaReserva.dgvTabLivro.Columns[2].Width = 80;
                     telaReserva.dgvTabLivro.Columns[3].Width = 185;
                     break;
-
-                case "M":
-
+                case "PLE": // pesquisar livro
+                    DataTable dtLivrosEmp = new DataTable();
+                    dtLivrosEmp.Columns.Add("Código Livro");
+                    dtLivrosEmp.Columns.Add("Titulo do Livro");
+                    dtLivrosEmp.Columns.Add("Quantidade");
+                    dtLivrosEmp.Columns.Add("Nome da Editora");
+                    foreach (Titulo tit in tituloDAL.ObterPorNome(parametros[0].ToString()))
+                    {
+                        Editora editora = editoraDAL.ObterPorID(tit.CodEditora);
+                        DataRow linhaPL = dtLivrosEmp.NewRow();
+                        linhaPL[0] = tit.CodTitulo;
+                        linhaPL[1] = tit.TituloLivro;
+                        linhaPL[2] = tit.Quantidade;
+                        linhaPL[3] = editora.editora;
+                        dtLivrosEmp.Rows.Add(linhaPL);
+                    }
+                    telaEmprestimo.dgvLivrosPesq.DataSource = dtLivrosEmp;
                     break;
-
-                case "C": // consulta para preencher os campos
-
-                    break;
-
-                case "P":
-
-                    break;
-
                 default:
                     break;
             }

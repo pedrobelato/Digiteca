@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Digiteca.DAL
 {
-    class ItemEmprestimoDAL
+    public class ItemEmprestimoDAL
     {
         MySQLPersistencia _banco = new MySQLPersistencia();
 
@@ -38,7 +38,7 @@ namespace Digiteca.DAL
             return (linhasAfetadas, msg);
         }
 
-
+        /*
         public (int, string) Atualizar(ItemEmprestimo itememprestimo)
         {
             int linhasAfetadas = 0;
@@ -65,6 +65,6 @@ namespace Digiteca.DAL
             }
 
             return (linhasAfetadas, msg);
-        }
+        }*/
     }
 }

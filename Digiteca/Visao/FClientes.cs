@@ -16,8 +16,10 @@ namespace Digiteca.Visao
     {
         private List<IObservador> listaObservadores = new List<IObservador>();
         string acao = "";
-        public fmClientes()
+        private int _form;
+        public fmClientes(int quem)
         {
+            _form = quem;
             InitializeComponent();
         }
 
@@ -44,7 +46,12 @@ namespace Digiteca.Visao
 
         private void dgvTabClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            acao = "PUC";
+            if (_form == 1)
+            {
+                acao = "PUC";
+            }
+            else
+                acao = "PUCE";
             if (!dgvTabClientes.CurrentRow.IsNewRow)
                 notificarObservadores();
         }

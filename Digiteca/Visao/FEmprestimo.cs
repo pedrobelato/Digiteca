@@ -15,40 +15,26 @@ namespace Digiteca.Visao
     {
         private List<IObservador> listaObservadores = new List<IObservador>();
         string acao = "";
+        DataTable dtLivrosSel = new DataTable();
+
         public fmEmprestimo()
         {
             InitializeComponent();
             dtpDataEmprestimo.Value = DateTime.Now;
-            //adicionarObservadores();
-            listaLivrosPesq.View = View.Details;
-            listaLivrosPesq.Columns.Add("Código", 70);
-            listaLivrosPesq.Columns.Add("Nome do Livro", 190);
-            listaLivrosPesq.Columns.Add("Autor", 70);
-            listaLivrosPesq.Columns.Add("Ano", 50);
+            dtLivrosSel.Columns.Add("Código Livro");
+            dtLivrosSel.Columns.Add("Titulo do Livro");
+            dtLivrosSel.Columns.Add("Quantidade");
+            dtLivrosSel.Columns.Add("Nome da Editora");
 
-            listaLivrosSel.View = View.Details;
-            listaLivrosSel.Columns.Add("Código", 70);
-            listaLivrosSel.Columns.Add("Nome do Livro", 190);
-            listaLivrosSel.Columns.Add("Autor", 70);
-            listaLivrosSel.Columns.Add("Ano", 50);
-
-            ListViewItem item = new ListViewItem(new[] { "1", "Harry Potter", "Pedrão", "2000" });
-            ListViewItem item1 = new ListViewItem(new[] { "2", "Harry Potter", "Pedrão", "2000" });
-            ListViewItem item2 = new ListViewItem(new[] { "3", "Harry Potter", "Pedrão", "2000" });
-            listaLivrosPesq.Items.Add(item);
-            listaLivrosPesq.Items.Add(item1);
-            listaLivrosPesq.Items.Add(item2);
+            dgvLivrosSel.DataSource = dtLivrosSel;
+            lbCpf.Visible = false;
+            lbCodUsu.Visible = false;
         }
 
         private void btnPesqUsu_Click(object sender, EventArgs e)
         {
             acao = "PU";
             notificarObservadores();
-            /*var form = Application.OpenForms["fmClientes"];
-            if (form != null)
-                form.Close();
-            form = new fmClientes();
-            form.Show();*/
         }
 
         public void adicionarObservadores(IObservador observador)
@@ -60,13 +46,13 @@ namespace Digiteca.Visao
         {
             foreach (IObservador observador in listaObservadores)
             {
-                if (acao == "PL")
+                if (acao == "PLE")
                 {
                     observador.notificar(acao, tbPesqLivro.Text);
                 }
                 else if (acao == "PU")
                 {
-                    observador.notificar(acao, tbUsuario.Text);
+                    observador.notificar(acao, 2, tbUsuario.Text);
                 }
                 else if (acao == "IE") // Incluir Empréstimo
                 {
@@ -84,11 +70,6 @@ namespace Digiteca.Visao
             }
             else 
             if(tbUsuario.Text == "")
-            {
-                return false;
-            }
-            else
-            if(tbBibliotecaria.Text == "")
             {
                 return false;
             }
@@ -117,27 +98,39 @@ namespace Digiteca.Visao
 
         private void btnPesqLivro_Click(object sender, EventArgs e)
         {
-            acao = "PL";
+            acao = "PLE";
             notificarObservadores();
+        }
+
+        private DataRow adicionarLinha(DataGridViewRow linha)
+        {
+            DataRow novaLinha = dtLivrosSel.NewRow();
+            novaLinha[0] = linha.Cells[0].Value;
+            novaLinha[1] = linha.Cells[1].Value;
+            novaLinha[2] = linha.Cells[2].Value;
+            return novaLinha;
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            foreach (int i in listaLivrosPesq.SelectedIndices)
+            if (!dgvLivrosPesq.CurrentRow.IsNewRow)
             {
-                var item = listaLivrosPesq.Items[i];
-                listaLivrosPesq.Items.RemoveAt(i);
-                listaLivrosSel.Items.Add(item);
+                dtLivrosSel.Rows.Add(adicionarLinha(dgvLivrosPesq.CurrentRow));
+                dgvLivrosSel.DataSource = dtLivrosSel;
             }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            foreach (int i in listaLivrosSel.SelectedIndices)
+            if (!dgvLivrosSel.CurrentRow.IsNewRow)
             {
-                var item = listaLivrosSel.Items[i];
-                listaLivrosSel.Items.RemoveAt(i);
-                listaLivrosPesq.Items.Add(item);
+                if (this.dgvLivrosSel.SelectedRows.Count > 0 &&
+                            this.dgvLivrosSel.SelectedRows[0].Index !=
+                            this.dgvLivrosSel.Rows.Count)
+                {
+                    this.dgvLivrosSel.Rows.RemoveAt(
+                        this.dgvLivrosSel.SelectedRows[0].Index);
+                }   
             }
         }
 
@@ -150,8 +143,8 @@ namespace Digiteca.Visao
         {
             if (tbPesqLivro.Text == "" && tbUsuario.Text == "" &&
                 Convert.ToDateTime(dtpDataEmprestimo.Value).ToShortDateString() == DateTime.Now.ToShortDateString() && 
-                listaLivrosPesq.Items.Count == 0 &&
-                listaLivrosSel.Items.Count == 0)
+                dgvLivrosPesq.Rows.Count == 0 &&
+                dgvLivrosSel.Rows.Count == 0)
             {
                 return false;
             }
@@ -166,14 +159,19 @@ namespace Digiteca.Visao
                 {
                     tbPesqLivro.Text = "";
                     tbUsuario.Text = "";
-                    tbBibliotecaria.Text = "";
-                    listaLivrosPesq.Items.Clear();
-                    listaLivrosSel.Items.Clear();
+                    dgvLivrosPesq.Rows.Clear();
+                    dgvLivrosSel.Rows.Clear();
                     dtpDataEmprestimo.Value = DateTime.Now;
                 }
             }
             else
                 MessageBox.Show("Não há dados para limpar", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void tbUsuario_TextChanged(object sender, EventArgs e)
+        {
+            lbCpf.Visible = false;
+            lbCodUsu.Visible = false;
         }
     }
 }

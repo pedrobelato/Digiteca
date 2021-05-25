@@ -52,7 +52,7 @@
             this.tbPesqLivro.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbPesqLivro.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPesqLivro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.tbPesqLivro.Location = new System.Drawing.Point(12, 128);
+            this.tbPesqLivro.Location = new System.Drawing.Point(12, 121);
             this.tbPesqLivro.Multiline = true;
             this.tbPesqLivro.Name = "tbPesqLivro";
             this.tbPesqLivro.Size = new System.Drawing.Size(327, 34);
@@ -63,7 +63,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label1.Location = new System.Drawing.Point(12, 94);
+            this.label1.Location = new System.Drawing.Point(8, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(327, 24);
             this.label1.TabIndex = 11;
@@ -89,7 +89,7 @@
             this.tbPesqUsuario.Location = new System.Drawing.Point(16, 409);
             this.tbPesqUsuario.Multiline = true;
             this.tbPesqUsuario.Name = "tbPesqUsuario";
-            this.tbPesqUsuario.Size = new System.Drawing.Size(351, 34);
+            this.tbPesqUsuario.Size = new System.Drawing.Size(327, 34);
             this.tbPesqUsuario.TabIndex = 3;
             this.tbPesqUsuario.TextChanged += new System.EventHandler(this.tbPesqUsuario_TextChanged);
             // 
@@ -128,7 +128,7 @@
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Image = global::Digiteca.Properties.Resources.iconfinder_cancel_2_309095;
-            this.btnCancelar.Location = new System.Drawing.Point(267, 484);
+            this.btnCancelar.Location = new System.Drawing.Point(273, 504);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(85, 61);
             this.btnCancelar.TabIndex = 7;
@@ -140,7 +140,7 @@
             this.btnConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Image = global::Digiteca.Properties.Resources.iconfinder_check_326572;
-            this.btnConfirmar.Location = new System.Drawing.Point(429, 484);
+            this.btnConfirmar.Location = new System.Drawing.Point(405, 504);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(85, 61);
             this.btnConfirmar.TabIndex = 6;
@@ -153,7 +153,7 @@
             this.btnPesqUsu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesqUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPesqUsu.Image = ((System.Drawing.Image)(resources.GetObject("btnPesqUsu.Image")));
-            this.btnPesqUsu.Location = new System.Drawing.Point(372, 409);
+            this.btnPesqUsu.Location = new System.Drawing.Point(348, 409);
             this.btnPesqUsu.Margin = new System.Windows.Forms.Padding(2);
             this.btnPesqUsu.Name = "btnPesqUsu";
             this.btnPesqUsu.Size = new System.Drawing.Size(35, 34);
@@ -167,7 +167,7 @@
             this.btnPesqLivro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesqLivro.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPesqLivro.Image = ((System.Drawing.Image)(resources.GetObject("btnPesqLivro.Image")));
-            this.btnPesqLivro.Location = new System.Drawing.Point(344, 128);
+            this.btnPesqLivro.Location = new System.Drawing.Point(344, 121);
             this.btnPesqLivro.Margin = new System.Windows.Forms.Padding(2);
             this.btnPesqLivro.Name = "btnPesqLivro";
             this.btnPesqLivro.Size = new System.Drawing.Size(33, 34);

@@ -98,7 +98,6 @@
     <Compile Include="DAL\ItemEmprestimoDAL.cs" />
     <Compile Include="DAL\MySQLPersistencia.cs" />
     <Compile Include="DAL\ReservaDAL.cs" />
-    <Compile Include="DAL\TelefoneDAL.cs" />
     <Compile Include="DAL\TituloDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="Model\Autor.cs" />

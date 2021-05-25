@@ -11,10 +11,6 @@ namespace Digiteca.DAL
     public class TituloDAL
     {
         MySQLPersistencia _banco = new MySQLPersistencia();
-        public bool GravarTitulo()
-        {
-            return true;
-        }
 
         public (Titulo, bool) ObterTitulo(int id)
         {
