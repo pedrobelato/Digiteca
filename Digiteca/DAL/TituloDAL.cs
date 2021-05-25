@@ -27,7 +27,8 @@ namespace Digiteca.DAL
                 _banco.AbrirConexao();
                 DataTable dados = _banco.ExecutarSelect(sql);
                 if (dados.Rows.Count > 0)
-                {
+                { 
+
                     titulo = new Titulo(Convert.ToInt32(dados.Rows[0]["codTitulo"]),
                                         dados.Rows[0]["titulo"].ToString(),
                                         Convert.ToInt32(dados.Rows[0]["quantidade"]),
