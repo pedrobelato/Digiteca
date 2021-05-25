@@ -14,7 +14,6 @@ namespace Digiteca.Controller
         fmReserva telaReserva;
         fmClientes telaClientes;
         fmEmprestimo telaEmprestimo;
-        fmAcesso telaAcesso;
         fmMain telaPrincipal;
 
         private static Controller instancia = null;
@@ -61,10 +60,11 @@ namespace Digiteca.Controller
             }
         }
 
-        public void mostrarTelaPrincipal()
+        public void mostrarTelaPrincipal(string nome)
         {
             telaPrincipal = new fmMain();
             telaPrincipal.adicionarObservadores(this);
+            telaPrincipal.lbName.Text = nome;
             telaPrincipal.ShowDialog();
         }
 
@@ -75,12 +75,13 @@ namespace Digiteca.Controller
             telaEmprestimo.ShowDialog();
         }
 
-        public bool Autenticar(int id, string senha)
+        public (bool, string) Autenticar(int id, string senha)
         {
             bool sucesso;
+            string nome = "";
             BibliotecaDAL bibliotecaDAL = new BibliotecaDAL();
-            (sucesso, _) = bibliotecaDAL.Autenticar(id, senha);
-            return sucesso;
+            (sucesso, nome) = bibliotecaDAL.Autenticar(id, senha);
+            return (sucesso, nome);
         }
 
         public void notificar(string acao, params object[] parametros)

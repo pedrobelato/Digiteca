@@ -18,16 +18,20 @@ namespace Digiteca.DAL
             string nome = "";
             try
             {
-                string sql = $"SELECT * FROM biblioteca where id = '{id}' and senha = '{senha}'";
+                string sql = $"SELECT * FROM digiteca.biblioteca where id = {id} and senha = '{senha}'";
 
                 _banco.AbrirConexao();
                 DataTable dados = _banco.ExecutarSelect(sql);
                 if (dados.Rows.Count > 0)
                 {
                     nome = dados.Rows[0]["nome"].ToString();
+                    sucesso = true;
+                }
+                else
+                {
+                    sucesso = false;
                 }
                 _banco.FecharConexao();
-                sucesso = true;
             }
             catch
             {
