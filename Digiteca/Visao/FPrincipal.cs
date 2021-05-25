@@ -4,11 +4,16 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Digiteca.Visao;
+using Digiteca.Controller;
 
 namespace Digiteca
 {
-    public partial class fmMain : Form
+    public partial class fmMain : Form, IObservada
     {
+        //Controller.Controller controle = new Controller.Controller();
+
+        private List<IObservador> listaObservadores = new List<IObservador>();
+        //controle.notificar("")
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -19,6 +24,15 @@ namespace Digiteca
             int nWidthEllipse,
             int nHeightEllipse
         );
+        public void adicionarObservadores(IObservador observador)
+        {
+            listaObservadores.Add(observador);
+        }
+
+        public void notificarObservadores()
+        {
+            
+        }
 
         public fmMain()
         {
@@ -27,8 +41,8 @@ namespace Digiteca
             pnlNav.Height = btnReserva.Height;
             pnlNav.Top = btnReserva.Top;
             pnlNav.Left = btnReserva.Left;
-            btnReserva.PerformClick();
-            abrirFormularioPanel<fmReserva>();
+            //btnReserva.PerformClick();
+            //abrirFormularioPanel<fmReserva>();
         }
 
         private void abrirFormularioPanel<MiForm>() where MiForm : Form, new()
@@ -70,7 +84,9 @@ namespace Digiteca
             pnlNav.Top = btnReserva.Top;
             pnlNav.Left = btnReserva.Left;
             btnReserva.BackColor = Color.FromArgb(46, 51, 73);
-            abrirFormularioPanel<fmReserva>();
+            //controle.abrirFormularioPanel<fmReserva>();
+            //Controller.Controller.obterInstancia().mostrarTelaReserva(new fmReserva());
+            Controller.Controller.obterInstancia().abrirReserva<fmReserva>();
         }
 
         private void btnReserva_Leave(object sender, EventArgs e)
