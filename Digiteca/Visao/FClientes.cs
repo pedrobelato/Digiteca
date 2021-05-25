@@ -42,7 +42,7 @@ namespace Digiteca.Visao
             this.Close();
         }
 
-        private void dgvTabClientes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTabClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             acao = "PUC";
             if (!dgvTabClientes.CurrentRow.IsNewRow)

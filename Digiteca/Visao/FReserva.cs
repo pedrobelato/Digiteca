@@ -118,7 +118,7 @@ namespace Digiteca.Visao
             lbCodUsu.Visible = false;
         }
 
-        private void dgvTabLivro_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTabLivro_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!dgvTabLivro.CurrentRow.IsNewRow)
             {

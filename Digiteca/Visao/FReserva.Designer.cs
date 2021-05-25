@@ -28,14 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmReserva));
             this.tbPesqLivro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvTabLivro = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.tbPesqUsuario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,6 +42,7 @@
             this.btnPesqLivro = new System.Windows.Forms.Button();
             this.lbCpf = new System.Windows.Forms.Label();
             this.lbCodUsu = new System.Windows.Forms.Label();
+            this.dgvTabLivro = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabLivro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,58 +68,6 @@
             this.label1.Size = new System.Drawing.Size(327, 24);
             this.label1.TabIndex = 11;
             this.label1.Text = "Digite o nome do livro para pesquisar:";
-            // 
-            // dgvTabLivro
-            // 
-            this.dgvTabLivro.AllowUserToAddRows = false;
-            this.dgvTabLivro.AllowUserToDeleteRows = false;
-            this.dgvTabLivro.AllowUserToOrderColumns = true;
-            this.dgvTabLivro.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dgvTabLivro.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTabLivro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTabLivro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTabLivro.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTabLivro.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(128)))));
-            this.dgvTabLivro.Location = new System.Drawing.Point(12, 181);
-            this.dgvTabLivro.MultiSelect = false;
-            this.dgvTabLivro.Name = "dgvTabLivro";
-            this.dgvTabLivro.ReadOnly = true;
-            this.dgvTabLivro.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTabLivro.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvTabLivro.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.dgvTabLivro.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvTabLivro.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.dgvTabLivro.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.dgvTabLivro.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.dgvTabLivro.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.dgvTabLivro.Size = new System.Drawing.Size(741, 188);
-            this.dgvTabLivro.TabIndex = 12;
-            this.dgvTabLivro.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTabLivro_CellContentDoubleClick);
             // 
             // label2
             // 
@@ -171,11 +115,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Handwriting", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
             this.label4.Location = new System.Drawing.Point(251, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(296, 37);
+            this.label4.Size = new System.Drawing.Size(240, 33);
             this.label4.TabIndex = 11;
             this.label4.Text = "Realizar Reserva";
             // 
@@ -252,12 +196,26 @@
             this.lbCodUsu.Size = new System.Drawing.Size(0, 24);
             this.lbCodUsu.TabIndex = 13;
             // 
+            // dgvTabLivro
+            // 
+            this.dgvTabLivro.AllowUserToAddRows = false;
+            this.dgvTabLivro.AllowUserToDeleteRows = false;
+            this.dgvTabLivro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTabLivro.Location = new System.Drawing.Point(12, 181);
+            this.dgvTabLivro.Name = "dgvTabLivro";
+            this.dgvTabLivro.ReadOnly = true;
+            this.dgvTabLivro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTabLivro.Size = new System.Drawing.Size(741, 198);
+            this.dgvTabLivro.TabIndex = 18;
+            this.dgvTabLivro.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTabLivro_CellDoubleClick);
+            // 
             // fmReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(765, 577);
+            this.Controls.Add(this.dgvTabLivro);
             this.Controls.Add(this.dtpDataReserva);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
@@ -267,7 +225,6 @@
             this.Controls.Add(this.lbCodUsu);
             this.Controls.Add(this.lbCpf);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgvTabLivro);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnPesqLivro);
@@ -291,10 +248,10 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DateTimePicker dtpDataReserva;
         private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.DataGridView dgvTabLivro;
         public System.Windows.Forms.TextBox tbPesqUsuario;
         public System.Windows.Forms.Label lbCpf;
         public System.Windows.Forms.Label lbCodUsu;
         public System.Windows.Forms.TextBox tbPesqLivro;
+        public System.Windows.Forms.DataGridView dgvTabLivro;
     }
 }
