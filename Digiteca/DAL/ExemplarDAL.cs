@@ -53,7 +53,7 @@ namespace Digiteca.DAL
             int linhasAfetadas = 0;
             try
             {
-                string sql = $"UPDATE digiteca.exemplar SET codSituacao = 2 WHERE (codExemplar = {idEx})";
+                string sql = $"UPDATE digiteca.exemplar SET codSituacao = 2 WHERE (codExemplar = {idEx} and codSituacao != 2)";
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql);
                 _banco.FecharConexao();

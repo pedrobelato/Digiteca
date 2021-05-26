@@ -170,19 +170,27 @@ namespace Digiteca.Controller
                     if (sucesso)
                     {
                         Exemplar exemplar = exemplarDAL.ObterExemplar(titulo.CodTitulo);
-                        if (exemplarDAL.Reservar(exemplar.CodLivro) > 0)
+                        if (exemplar != null)
                         {
-                            Usuario usuario = usuarioDAL.ObterPorCPF(parametros[0].ToString());
-                            if (reservaDAL.GravarReserva(new Reserva(Convert.ToDateTime(parametros[2]),
-                                                        usuario.Id,
-                                                        Convert.ToInt32(parametros[1]))))
+
+                            if (exemplarDAL.Reservar(exemplar.CodLivro) > 0)
                             {
-                                if(tituloDAL.atualizarQuantidade(titulo.CodTitulo) == 1)
+                                Usuario usuario = usuarioDAL.ObterPorCPF(parametros[0].ToString());
+                                if (reservaDAL.GravarReserva(new Reserva(Convert.ToDateTime(parametros[2]),
+                                                            usuario.Id,
+                                                            Convert.ToInt32(parametros[1]))))
                                 {
-                                    MessageBox.Show("Sua Reserva foi Gravada!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
-                                    gravou = true;
+                                    if (tituloDAL.atualizarQuantidade(titulo.CodTitulo) == 1)
+                                    {
+                                        MessageBox.Show("Sua Reserva foi Gravada!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                        gravou = true;
+                                    }
                                 }
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Livro já reservado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
