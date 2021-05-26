@@ -18,6 +18,7 @@ namespace Digiteca.DAL
             try
             {
                 string sql = $"select * from digiteca.exemplar where codTitulo = {idTitulo} and codSituacao = 0";
+                //string sql = $"select * from digiteca.exemplar where codTitulo = {idTitulo}";
 
                 _banco.AbrirConexao();
                 DataTable dados = _banco.ExecutarSelect(sql);

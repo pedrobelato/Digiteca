@@ -55,5 +55,20 @@ namespace Digiteca.DAL
             _banco.FecharConexao();
             return titulo;
         }
+
+        public int atualizarQuantidade(int codTit)
+        {
+            int linhasAfetadas = 0;
+            try
+            {
+                string sql = $"update digiteca.titulo set quantidade = quantidade-1 where (codTitulo = {codTit})";
+                _banco.AbrirConexao();
+
+                linhasAfetadas = _banco.ExecutarNonQuery(sql);
+                _banco.FecharConexao();
+            }
+            catch(Exception e) { Console.WriteLine(e);}
+            return linhasAfetadas;
+        }
     }
 }

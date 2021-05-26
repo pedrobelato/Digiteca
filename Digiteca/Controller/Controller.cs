@@ -143,8 +143,11 @@ namespace Digiteca.Controller
                                 {
                                     if (itemDAL.GravarItemEmprestimo(itemEmp))
                                     {
-                                        MessageBox.Show($"Seu Empréstimo do livro = '{item.TituloLivro}' foi Gravado!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
-                                        gravou = true;
+                                        if (tituloDAL.atualizarQuantidade(item.CodTitulo) == 1)
+                                        {
+                                            MessageBox.Show($"Seu Empréstimo do livro = '{item.TituloLivro}' foi Gravado!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                            gravou = true;
+                                        }
                                     }
                                 }                                
                             }
@@ -174,8 +177,11 @@ namespace Digiteca.Controller
                                                         usuario.Id,
                                                         Convert.ToInt32(parametros[1]))))
                             {
-                                MessageBox.Show("Sua Reserva foi Gravada!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
-                                gravou = true;
+                                if(tituloDAL.atualizarQuantidade(titulo.CodTitulo) == 1)
+                                {
+                                    MessageBox.Show("Sua Reserva foi Gravada!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                    gravou = true;
+                                }
                             }
                         }
                     }

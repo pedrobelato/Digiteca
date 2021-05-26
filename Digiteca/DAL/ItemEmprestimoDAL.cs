@@ -29,6 +29,7 @@ namespace Digiteca.DAL
                 ps.Add("@vencimento", itememprestimo.DataLimite);
                 ps.Add("@dev", itememprestimo.Devolucao);
 
+                _banco.apagarParametros();
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql, ps);
                 if (linhasAfetadas > 0)

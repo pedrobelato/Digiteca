@@ -20,6 +20,10 @@ namespace Digiteca.DAL
             _comando = _conexao.CreateCommand();
         }
 
+        public void apagarParametros()
+        {
+            _comando.Parameters.Clear();
+        }
         public void AbrirConexao()
         {
             if (_conexao.State != System.Data.ConnectionState.Open)

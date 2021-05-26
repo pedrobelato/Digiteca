@@ -68,6 +68,11 @@ namespace Digiteca.Visao
             {
                 return false;
             }
+            else
+            if (dgvLivrosSel.Rows.Count == 0)
+            {
+                return false;
+            }
             return true;
         }
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -103,14 +108,24 @@ namespace Digiteca.Visao
             novaLinha[2] = linha.Cells[2].Value;
             novaLinha[3] = linha.Cells[3].Value;
             return novaLinha;
+        
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             if (!dgvLivrosPesq.CurrentRow.IsNewRow)
             {
-                dtLivrosSel.Rows.Add(adicionarLinha(dgvLivrosPesq.CurrentRow));
-                dgvLivrosSel.DataSource = dtLivrosSel;
+                if(Convert.ToInt32(dgvLivrosPesq.CurrentRow.Cells[2].Value) > 0)
+                {
+                    dtLivrosSel.Rows.Add(adicionarLinha(dgvLivrosPesq.CurrentRow));
+                    dgvLivrosSel.DataSource = dtLivrosSel;
+                }
+                else
+                {
+                    MessageBox.Show($"Não há exemplar disponivel para ({dgvLivrosPesq.CurrentRow.Cells[1].Value.ToString()})",
+                        "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
         }
 
