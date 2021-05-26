@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Digiteca.Controller;
+using Digiteca.Model;
 
 namespace Digiteca.Visao
 {
     public partial class fmEmprestimo : Form, IObservada
     {
         private List<IObservador> listaObservadores = new List<IObservador>();
+        private List<Titulo> livros = new List<Titulo>();
+
         string acao = "";
         DataTable dtLivrosSel = new DataTable();
 
@@ -56,8 +59,10 @@ namespace Digiteca.Visao
                 }
                 else if (acao == "IE") // Incluir Empréstimo
                 {
-                    observador.notificar(acao, tbPesqLivro.Text,
-                                                tbUsuario.Text);
+                    observador.notificar(acao, lbCodUsu.Text,
+                                                dtpDataEmprestimo.Value,
+                                                dtpDevolucao.Value,
+                                                livros);
                 }
             }
         }
@@ -90,6 +95,13 @@ namespace Digiteca.Visao
             if (ValidarCampos())
             {
                 acao = "IE";
+                foreach (DataGridViewRow linha in dgvLivrosSel.Rows)
+                {
+                    livros.Add(new Titulo(Convert.ToInt32(linha.Cells[0].Value), 
+                                            linha.Cells[1].Value.ToString(), 
+                                            Convert.ToInt32(linha.Cells[2].Value), 
+                                            Convert.ToInt32(linha.Cells[3].Value)));
+                }
                 notificarObservadores();
             }
             else

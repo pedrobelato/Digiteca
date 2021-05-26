@@ -1,11 +1,11 @@
 ﻿using Digiteca.DAL;
 using Digiteca.Model;
+using Digiteca.Visao;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using Digiteca.Visao;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Digiteca.Controller
 {
@@ -20,7 +20,7 @@ namespace Digiteca.Controller
         private static object trava = new object();
         public Controller()
         {
-              
+
         }
         public static Controller obterInstancia()
         {
@@ -108,18 +108,63 @@ namespace Digiteca.Controller
             ReservaDAL reservaDAL = new ReservaDAL();
             EditoraDAL editoraDAL = new EditoraDAL();
             BibliotecaDAL bibliotecaDAL = new BibliotecaDAL();
+            EmprestimoDAL emprestimoDAL = new EmprestimoDAL();
+            ItemEmprestimoDAL itemDAL = new ItemEmprestimoDAL();
+            ExemplarDAL exemplarDAL = new ExemplarDAL();
             switch (acao)
             {
+                case "IE": // Inserir Empréstimo
+                    bool gravou = false;
+                    Usuario usuarioEmp = usuarioDAL.ObterPorCPF(parametros[0].ToString());
+                    Emprestimo emp = new Emprestimo(Convert.ToDateTime(parametros[1]), usuarioEmp);
+                    if (emprestimoDAL.GravarEmprestimo(emp))
+                    {
+                        List<Titulo> livros = (List<Titulo>)parametros[3];
+                        foreach (var item in livros)
+                        {
+                            // 1 - Emprestado
+                            // 2 - Reservado
+                            // 0 - Disponível
+
+                            Exemplar exemplar = null;
+                            exemplar = exemplarDAL.ObterExemplar(item.CodTitulo);
+                            if (exemplar != null)
+                            {
+                                ItemEmprestimo itemEmp = new ItemEmprestimo(emp.CodEmpDev.ToString(),
+                                                                            emp.Usuario, exemplar,
+                                                                            Convert.ToDateTime(parametros[1]),
+                                                                            Convert.ToDateTime(parametros[2]),
+                                                                            1);
+                                if (exemplarDAL.Emprestar(exemplar.CodSeqExemplar, exemplar.CodLivro) == 1)
+                                {
+                                    if (itemDAL.GravarItemEmprestimo(itemEmp))
+                                    {
+                                        MessageBox.Show($"Seu Empréstimo do livro = '{item.TituloLivro}' foi Gravado!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                        gravou = true;
+                                    }
+                                }                                
+                            }
+                        }
+                    }
+                    if (!gravou)
+                    {
+                        MessageBox.Show("Erro durante a gravação...", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }   
+                    break;
                 case "IR": // incluir Reserva
+
+                    /// Procurar se o livro tem quantidade disponível e ir no banco pegando o códigoSequencial do exemplar
+                    /// cujo codSituação = 0
+                    /// retorna o exemplar, marcar codSituação como 2 e cabow
                     Usuario usuario = usuarioDAL.ObterPorCPF(parametros[1].ToString());
                     if (reservaDAL.GravarReserva(new Reserva(Convert.ToDateTime(parametros[3]),
                                                 usuario.Id,
                                                 Convert.ToInt32(parametros[2]))))
                     {
-                        MessageBox.Show("Sua Reserva foi Gravada!","Sucesso!",MessageBoxButtons.OK, MessageBoxIcon.None);
+                        MessageBox.Show("Sua Reserva foi Gravada!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
                     }
                     else
-                        MessageBox.Show("Erro durante a gravação...","Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Erro durante a gravação...", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
 
                 case "PU": // Pesquisar Usuário

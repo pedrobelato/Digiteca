@@ -11,60 +11,37 @@ namespace Digiteca.DAL
     {
         MySQLPersistencia _banco = new MySQLPersistencia();
 
-        public (int, string) GravarItemEmprestimo(ItemEmprestimo itememprestimo)
+        public bool GravarItemEmprestimo(ItemEmprestimo itememprestimo)
         {
             int linhasAfetadas = 0;
-            string msg = "";
+            bool sucesso = false;
             try
             {
-                string sql = "insert into itememprestimo (codEmprestimo, codUsuario, codExemplar, dataEmp, dataLimite, devolucao) values (@codEmp, @codUsu, @codExe, @dataEmp, @sdataLimite, @dev)";
+                string sql = "insert into itememprestimo (codEmprestimo, codUsuario, codExemplar, dataEmp, dataLimite, devolucao) values (@codEmp, @codUsu, @codExe, @dataEmp, @dataLimite, @dev)";
 
                 Dictionary<string, object> ps = new Dictionary<string, object>();
-                ps.Add("@codEmprestimo", itememprestimo.CodEmprestimo);
-                ps.Add("@codUsuario", itememprestimo.CodUsuario);
-                ps.Add("@codExemplar", itememprestimo.CodExemplar);
+                ps.Add("@codEmp", itememprestimo.CodEmprestimo);
+                ps.Add("@codUsu", itememprestimo.Usuario.Id);
+                ps.Add("@codExe", itememprestimo.Exemplar.CodSeqExemplar);
                 ps.Add("@dataEmp", itememprestimo.DataEmp);
                 ps.Add("@dataLimite", itememprestimo.DataLimite);
-                ps.Add("@devolucao", itememprestimo.Devolucao);
+                ps.Add("@dev", itememprestimo.Devolucao);
 
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql, ps);
+                if (linhasAfetadas > 0)
+                {
+                    sucesso = true;
+                }
+                else
+                    sucesso = false;
                 _banco.FecharConexao();
             }
             catch
             {
-                msg = "Não foi possível salvar! Tente novamente.";
+                sucesso = false;
             }
-            return (linhasAfetadas, msg);
+            return sucesso;
         }
-
-        /*
-        public (int, string) Atualizar(ItemEmprestimo itememprestimo)
-        {
-            int linhasAfetadas = 0;
-            string msg = "";
-            try
-            {
-                string sql = "update itememprestimo set codUsuario = @codUsu, codExemplar = @codExe, dataEmp = @dataemp, dataLimite = @datali, devolucao = @dev where codEmprestimo = @cod";
-
-                Dictionary<string, object> ps = new Dictionary<string, object>();
-                ps.Add("@codEmprestimo", itememprestimo.CodEmprestimo);
-                ps.Add("@codUsuario", itememprestimo.CodUsuario);
-                ps.Add("@codExemplar", itememprestimo.CodExemplar);
-                ps.Add("@dataEmp", itememprestimo.DataEmp);
-                ps.Add("@dataLimite", itememprestimo.DataLimite);
-                ps.Add("@devolucao", itememprestimo.Devolucao);
-
-                _banco.AbrirConexao();
-                linhasAfetadas = _banco.ExecutarNonQuery(sql);
-                _banco.FecharConexao();
-            }
-            catch
-            {
-                msg = "Não foi possível salvar! Tente novamente.";
-            }
-
-            return (linhasAfetadas, msg);
-        }*/
     }
 }

@@ -95,6 +95,7 @@
     <Compile Include="DAL\BibliotecaDAL.cs" />
     <Compile Include="DAL\EditoraDAL.cs" />
     <Compile Include="DAL\EmprestimoDAL.cs" />
+    <Compile Include="DAL\ExemplarDAL.cs" />
     <Compile Include="DAL\ItemEmprestimoDAL.cs" />
     <Compile Include="DAL\MySQLPersistencia.cs" />
     <Compile Include="DAL\ReservaDAL.cs" />
@@ -103,7 +104,7 @@
     <Compile Include="Model\Autor.cs" />
     <Compile Include="Model\Biblioteca.cs" />
     <Compile Include="Model\Editora.cs" />
-    <Compile Include="Model\Emprestimo_Devolucao.cs" />
+    <Compile Include="Model\Emprestimo.cs" />
     <Compile Include="Model\Estado.cs" />
     <Compile Include="Model\Exemplar.cs" />
     <Compile Include="Model\ItemEmprestimo.cs" />

@@ -104,7 +104,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label4.Location = new System.Drawing.Point(575, 442);
+            this.label4.Location = new System.Drawing.Point(575, 382);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(178, 24);
             this.label4.TabIndex = 19;
@@ -115,7 +115,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label6.Location = new System.Drawing.Point(586, 382);
+            this.label6.Location = new System.Drawing.Point(586, 438);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(167, 24);
             this.label6.TabIndex = 21;
@@ -139,7 +139,7 @@
             this.dtpDataEmprestimo.CalendarFont = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDataEmprestimo.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
             this.dtpDataEmprestimo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEmprestimo.Location = new System.Drawing.Point(579, 469);
+            this.dtpDataEmprestimo.Location = new System.Drawing.Point(579, 409);
             this.dtpDataEmprestimo.Name = "dtpDataEmprestimo";
             this.dtpDataEmprestimo.Size = new System.Drawing.Size(174, 20);
             this.dtpDataEmprestimo.TabIndex = 23;
@@ -150,7 +150,7 @@
             this.dtpDevolucao.CalendarFont = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDevolucao.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
             this.dtpDevolucao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDevolucao.Location = new System.Drawing.Point(579, 409);
+            this.dtpDevolucao.Location = new System.Drawing.Point(579, 465);
             this.dtpDevolucao.Name = "dtpDevolucao";
             this.dtpDevolucao.Size = new System.Drawing.Size(174, 20);
             this.dtpDevolucao.TabIndex = 25;
@@ -343,8 +343,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dtpDataEmprestimo;
-        private System.Windows.Forms.DateTimePicker dtpDevolucao;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
@@ -357,5 +355,7 @@
         public System.Windows.Forms.TextBox tbUsuario;
         public System.Windows.Forms.Label lbCodUsu;
         public System.Windows.Forms.Label lbCpf;
+        public System.Windows.Forms.DateTimePicker dtpDataEmprestimo;
+        public System.Windows.Forms.DateTimePicker dtpDevolucao;
     }
 }

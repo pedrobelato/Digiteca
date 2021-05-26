@@ -10,10 +10,14 @@ namespace Digiteca.Model
     {
         private int _codSeqExemplar;
         private int _codLivro;
-        private string _situacao;
-        private int _codEditora;
+        private int _situacao;
 
-        public Exemplar(int codSeqExemplar, int codLivro, string situacao)
+        public Exemplar()
+        {
+
+        }
+
+        public Exemplar(int codSeqExemplar, int codLivro, int situacao)
         {
             _codSeqExemplar = codSeqExemplar;
             _codLivro = codLivro;
@@ -22,6 +26,6 @@ namespace Digiteca.Model
 
         public int CodSeqExemplar { get => _codSeqExemplar; set => _codSeqExemplar = value; }
         public int CodLivro { get => _codLivro; set => _codLivro = value; }
-        public string Situacao { get => _situacao; set => _situacao = value; }
+        public int Situacao { get => _situacao; set => _situacao = value; }
     }
 }
