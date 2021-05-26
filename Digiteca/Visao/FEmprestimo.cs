@@ -24,12 +24,7 @@ namespace Digiteca.Visao
         {
             InitializeComponent();
             dtpDataEmprestimo.Value = DateTime.Now;
-            dtLivrosSel.Columns.Add("Código Livro");
-            dtLivrosSel.Columns.Add("Titulo do Livro");
-            dtLivrosSel.Columns.Add("Quantidade");
-            dtLivrosSel.Columns.Add("Nome da Editora");
-
-            dgvLivrosSel.DataSource = dtLivrosSel;
+            montarDGVSEL(false);
             lbCpf.Visible = false;
             lbCodUsu.Visible = false;
         }
@@ -103,6 +98,7 @@ namespace Digiteca.Visao
                                             Convert.ToInt32(linha.Cells[3].Value)));
                 }
                 notificarObservadores();
+                limparTela(true);
             }
             else
                 MessageBox.Show("Ainda há campos faltando preenchimento", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -165,19 +161,55 @@ namespace Digiteca.Visao
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            limparTela(false);
+        }
+
+        private void limparTela(bool Gravado)
+        {
             if (existeDados())
             {
-                if (MessageBox.Show("Deseja cancelar a reserva do livro e limpar os campos ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (Gravado)
                 {
                     tbPesqLivro.Text = "";
                     tbUsuario.Text = "";
-                    dgvLivrosPesq.Rows.Clear();
-                    dgvLivrosSel.Rows.Clear();
+                    dgvLivrosPesq.DataSource = null;
+                    montarDGVSEL(true);
+                    dtpDataEmprestimo.Value = DateTime.Now;
+                }
+                else if (MessageBox.Show("Deseja cancelar a reserva do livro e limpar os campos ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    tbPesqLivro.Text = "";
+                    tbUsuario.Text = "";
+                    dgvLivrosPesq.DataSource = null; 
+                    montarDGVSEL(true);
                     dtpDataEmprestimo.Value = DateTime.Now;
                 }
             }
             else
                 MessageBox.Show("Não há dados para limpar", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void montarDGVSEL(bool limparTela)
+        {
+            if (limparTela)
+            {
+                dtLivrosSel.Rows.Clear();
+                dtLivrosSel.Columns.Clear();
+                dtLivrosSel.Columns.Add("Código Livro");
+                dtLivrosSel.Columns.Add("Titulo do Livro");
+                dtLivrosSel.Columns.Add("Quantidade");
+                dtLivrosSel.Columns.Add("Nome da Editora");
+                dgvLivrosSel.DataSource = dtLivrosSel;
+                
+            }
+            else
+            {
+                dtLivrosSel.Columns.Add("Código Livro");
+                dtLivrosSel.Columns.Add("Titulo do Livro");
+                dtLivrosSel.Columns.Add("Quantidade");
+                dtLivrosSel.Columns.Add("Nome da Editora");
+                dgvLivrosSel.DataSource = dtLivrosSel;
+            }
         }
 
         private void tbUsuario_TextChanged(object sender, EventArgs e)

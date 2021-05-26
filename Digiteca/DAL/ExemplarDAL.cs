@@ -33,22 +33,31 @@ namespace Digiteca.DAL
             return exemplar;
         }
 
-        public int Emprestar(int idEx, int idTit)
+        public int Emprestar(int idEx)
         {
             int linhasAfetadas = 0;
             try
             {
-                string sql = $"UPDATE digiteca.exemplar SET codSituacao = '1' WHERE (codExemplar = {idEx})";
-                //string sqls = $"UPDATE digiteca.titulo SET quantidade = quantidade-1 WHERE (codTitulo = {idTit})";
+                string sql = $"UPDATE digiteca.exemplar SET codSituacao = 1 WHERE (codExemplar = {idEx})";
                 _banco.AbrirConexao();
                 linhasAfetadas = _banco.ExecutarNonQuery(sql);
-                //linhasAfetadas = _banco.ExecutarNonQuery(sqls);
                 _banco.FecharConexao();
             }
-            catch
-            {
+            catch{}
+            return linhasAfetadas;
+        }
 
+        public int Reservar(int idEx)
+        {
+            int linhasAfetadas = 0;
+            try
+            {
+                string sql = $"UPDATE digiteca.exemplar SET codSituacao = 2 WHERE (codExemplar = {idEx})";
+                _banco.AbrirConexao();
+                linhasAfetadas = _banco.ExecutarNonQuery(sql);
+                _banco.FecharConexao();
             }
+            catch{}
             return linhasAfetadas;
         }
     }

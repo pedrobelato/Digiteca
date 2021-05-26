@@ -14,7 +14,7 @@ namespace Digiteca.DAL
         public bool GravarItemEmprestimo(ItemEmprestimo itememprestimo)
         {
             int linhasAfetadas = 0;
-            bool sucesso = false;
+            bool sucesso;
             try
             {
                 string sql = "insert into itememprestimo (codEmprestimo, codUsuario, codExemplar, dataEmp, dataLimite, devolucao) values (@codEmp, @codUsu, @codExe, @dataEmp, @dataLimite, @dev)";

@@ -30,7 +30,7 @@ namespace Digiteca.Visao
                 {
                     observador.notificar(acao, lbCodUsu.Text,
                                                dgvTabLivro.CurrentRow.Cells[0].Value.ToString(), // codigo do titulo
-                                               dtpDataReserva.Value); // número do exemplar
+                                               dtpDataReserva.Value);
                 }
                 else if (acao == "PU")
                 {
@@ -78,9 +78,36 @@ namespace Digiteca.Visao
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            limparTela(false);
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            if (ValidarCampos())
+            {
+                acao = "IR";
+                notificarObservadores();
+                limparTela(true);
+            }
+            else
+                MessageBox.Show("Ainda há campos faltando preenchimento", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void limparTela(bool Gravado)
+        {
             if (existeDados())
             {
-                if (MessageBox.Show("Deseja cancelar a reserva do livro e limpar os campos ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (Gravado)
+                {
+                    tbPesqLivro.Text = "";
+                    tbPesqUsuario.Text = "";
+                    for (int i = 0; i < dgvTabLivro.RowCount; i++)
+                    {
+                        dgvTabLivro.Rows[i].DataGridView.Columns.Clear();
+                    }
+                    dtpDataReserva.Value = DateTime.Now;
+                }
+                else if (MessageBox.Show("Deseja cancelar a reserva do livro e limpar os campos ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     tbPesqLivro.Text = "";
                     tbPesqUsuario.Text = "";
@@ -93,17 +120,6 @@ namespace Digiteca.Visao
             }
             else
                 MessageBox.Show("Não há dados para limpar", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            if (ValidarCampos())
-            {
-                acao = "IR";
-                notificarObservadores();
-            }
-            else
-                MessageBox.Show("Ainda há campos faltando preenchimento", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void btnPesqUsu_Click(object sender, System.EventArgs e)

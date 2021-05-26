@@ -111,6 +111,7 @@ namespace Digiteca.Controller
             EmprestimoDAL emprestimoDAL = new EmprestimoDAL();
             ItemEmprestimoDAL itemDAL = new ItemEmprestimoDAL();
             ExemplarDAL exemplarDAL = new ExemplarDAL();
+            bool sucesso;
             switch (acao)
             {
                 case "IE": // Inserir Empréstimo
@@ -135,7 +136,7 @@ namespace Digiteca.Controller
                                                                             Convert.ToDateTime(parametros[1]),
                                                                             Convert.ToDateTime(parametros[2]),
                                                                             1);
-                                if (exemplarDAL.Emprestar(exemplar.CodSeqExemplar, exemplar.CodLivro) == 1)
+                                if (exemplarDAL.Emprestar(exemplar.CodSeqExemplar) == 1)
                                 {
                                     if (itemDAL.GravarItemEmprestimo(itemEmp))
                                     {
@@ -156,15 +157,31 @@ namespace Digiteca.Controller
                     /// Procurar se o livro tem quantidade disponível e ir no banco pegando o códigoSequencial do exemplar
                     /// cujo codSituação = 0
                     /// retorna o exemplar, marcar codSituação como 2 e cabow
-                    Usuario usuario = usuarioDAL.ObterPorCPF(parametros[1].ToString());
-                    if (reservaDAL.GravarReserva(new Reserva(Convert.ToDateTime(parametros[3]),
-                                                usuario.Id,
-                                                Convert.ToInt32(parametros[2]))))
+                    
+                    gravou = false;
+                    Titulo titulo;
+                    (titulo, sucesso) = tituloDAL.ObterTitulo_Qtde(Convert.ToInt32(parametros[1]));
+                    if (sucesso)
                     {
-                        MessageBox.Show("Sua Reserva foi Gravada!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                        Exemplar exemplar = exemplarDAL.ObterExemplar(titulo.CodTitulo);
+                        if (exemplarDAL.Reservar(exemplar.CodLivro) > 0)
+                        {
+                            Usuario usuario = usuarioDAL.ObterPorCPF(parametros[0].ToString());
+                            if (reservaDAL.GravarReserva(new Reserva(Convert.ToDateTime(parametros[2]),
+                                                        usuario.Id,
+                                                        Convert.ToInt32(parametros[1]))))
+                            {
+                                MessageBox.Show("Sua Reserva foi Gravada!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                gravou = true;
+                            }
+                        }
                     }
                     else
+                        MessageBox.Show("Esse Livro não tem exemplares disponíveis", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (!gravou)
+                    {
                         MessageBox.Show("Erro durante a gravação...", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     break;
 
                 case "PU": // Pesquisar Usuário

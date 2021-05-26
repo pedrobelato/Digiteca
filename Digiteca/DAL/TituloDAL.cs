@@ -12,19 +12,18 @@ namespace Digiteca.DAL
     {
         MySQLPersistencia _banco = new MySQLPersistencia();
 
-        public (Titulo, bool) ObterTitulo(int id)
+        public (Titulo, bool) ObterTitulo_Qtde(int id)
         {
             bool sucesso;
             Titulo titulo = new Titulo();
             try
             {
-                string sql = $"SELECT * FROM titulo where id = '{id}'";
+                string sql = $"select * from digiteca.titulo where codTitulo = {id} and quantidade > 0;";
 
                 _banco.AbrirConexao();
                 DataTable dados = _banco.ExecutarSelect(sql);
                 if (dados.Rows.Count > 0)
                 { 
-
                     titulo = new Titulo(Convert.ToInt32(dados.Rows[0]["codTitulo"]),
                                         dados.Rows[0]["titulo"].ToString(),
                                         Convert.ToInt32(dados.Rows[0]["quantidade"]),
