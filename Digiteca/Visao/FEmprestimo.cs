@@ -54,10 +54,10 @@ namespace Digiteca.Visao
                 }
                 else if (acao == "IE") // Incluir Empréstimo
                 {
-                    observador.notificar(acao, lbCodUsu.Text,
-                                                dtpDataEmprestimo.Value,
-                                                dtpDevolucao.Value,
-                                                livros);
+                    observador.notificar(acao, lbCodUsu.Text, // CPF do usuário
+                                                dtpDataEmprestimo.Value, // Data do empréstimo
+                                                dtpDevolucao.Value, // Data de devolução
+                                                livros); // lista dos livros pelo dgvLivrosSel
                 }
             }
         }

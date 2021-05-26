@@ -28,9 +28,9 @@ namespace Digiteca.Visao
             {
                 if (acao == "IR")
                 {
-                    observador.notificar(acao, lbCodUsu.Text,
+                    observador.notificar(acao, lbCodUsu.Text, // CPF do usuário
                                                dgvTabLivro.CurrentRow.Cells[0].Value.ToString(), // codigo do titulo
-                                               dtpDataReserva.Value);
+                                               dtpDataReserva.Value); // data da reserva
                 }
                 else if (acao == "PU")
                 {
