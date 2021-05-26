@@ -38,6 +38,32 @@ namespace Digiteca.DAL
             catch{}
             return sucesso;
         }
+
+        public Emprestimo ObterUltimoEmprestimo()
+        {
+            Emprestimo emprestimo = null;
+            try
+            {
+                string sql = $"select * from digiteca.emprestimo where codEmprestimo = {_banco.UltimoId}";
+
+                _banco.AbrirConexao();
+                DataTable dados = _banco.ExecutarSelect(sql);
+                if (dados.Rows.Count > 0)
+                {
+                    Usuario usuario = new Usuario(Convert.ToInt32(dados.Rows[0]["codUsuario"]),
+                                                    dados.Rows[0]["pessoa"].ToString());
+                    emprestimo = new Emprestimo(Convert.ToInt32(dados.Rows[0]["codEmprestimo"]),
+                                                 Convert.ToDateTime(dados.Rows[0]["data"]),
+                                                 usuario);
+                }
+                _banco.FecharConexao();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return emprestimo;
+        }
     }
 }
 

@@ -123,6 +123,7 @@ namespace Digiteca.Controller
                         List<Titulo> livros = (List<Titulo>)parametros[3];
                         foreach (var item in livros)
                         {
+                            gravou = false;
                             // 1 - Emprestado
                             // 2 - Reservado
                             // 0 - Disponível
@@ -131,11 +132,13 @@ namespace Digiteca.Controller
                             exemplar = exemplarDAL.ObterExemplar(item.CodTitulo);
                             if (exemplar != null)
                             {
-                                ItemEmprestimo itemEmp = new ItemEmprestimo(emp.CodEmpDev.ToString(),
+                                emp = emprestimoDAL.ObterUltimoEmprestimo();
+                                ItemEmprestimo itemEmp = new ItemEmprestimo(emp.CodEmp,
                                                                             emp.Usuario, exemplar,
                                                                             Convert.ToDateTime(parametros[1]),
                                                                             Convert.ToDateTime(parametros[2]),
                                                                             1);
+                                exemplarDAL = new ExemplarDAL();
                                 if (exemplarDAL.Emprestar(exemplar.CodSeqExemplar) == 1)
                                 {
                                     if (itemDAL.GravarItemEmprestimo(itemEmp))
@@ -226,15 +229,14 @@ namespace Digiteca.Controller
                     dtLivros.Columns.Add("Código Livro");
                     dtLivros.Columns.Add("Titulo do Livro");
                     dtLivros.Columns.Add("Quantidade");
-                    dtLivros.Columns.Add("Nome da Editora");
+                    dtLivros.Columns.Add("ID da Editora");
                     foreach (Titulo tit in tituloDAL.ObterPorNome(parametros[0].ToString()))
                     {
-                        Editora editora = editoraDAL.ObterPorID(tit.CodEditora);
                         DataRow linhaPL = dtLivros.NewRow();
                         linhaPL[0] = tit.CodTitulo;
                         linhaPL[1] = tit.TituloLivro;
                         linhaPL[2] = tit.Quantidade;
-                        linhaPL[3] = editora.editora;
+                        linhaPL[3] = tit.CodEditora;
                         dtLivros.Rows.Add(linhaPL);
                     }
                     telaReserva.dgvTabLivro.DataSource = dtLivros;
@@ -248,15 +250,14 @@ namespace Digiteca.Controller
                     dtLivrosEmp.Columns.Add("Código Livro");
                     dtLivrosEmp.Columns.Add("Titulo do Livro");
                     dtLivrosEmp.Columns.Add("Quantidade");
-                    dtLivrosEmp.Columns.Add("Nome da Editora");
+                    dtLivrosEmp.Columns.Add("ID da Editora");
                     foreach (Titulo tit in tituloDAL.ObterPorNome(parametros[0].ToString()))
                     {
-                        Editora editora = editoraDAL.ObterPorID(tit.CodEditora);
                         DataRow linhaPL = dtLivrosEmp.NewRow();
                         linhaPL[0] = tit.CodTitulo;
                         linhaPL[1] = tit.TituloLivro;
                         linhaPL[2] = tit.Quantidade;
-                        linhaPL[3] = editora.editora;
+                        linhaPL[3] = tit.CodEditora;
                         dtLivrosEmp.Rows.Add(linhaPL);
                     }
                     telaEmprestimo.dgvLivrosPesq.DataSource = dtLivrosEmp;

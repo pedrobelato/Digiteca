@@ -34,6 +34,8 @@ namespace Digiteca.DAL
             _comando.CommandText = "select, insert, delete...";
         }
 
+        public int UltimoId { get; set; }
+
         /// <summary>
         /// Executa Insert, Delete ou Update. Além de Stored Procedure.
         /// </summary>
@@ -48,7 +50,10 @@ namespace Digiteca.DAL
                 }
             }
             int linhasAfetadas = _comando.ExecuteNonQuery();
-
+            if (linhasAfetadas > 0)
+            {
+                UltimoId = Convert.ToInt32(_comando.LastInsertedId);
+            }
             return linhasAfetadas;
         }
 

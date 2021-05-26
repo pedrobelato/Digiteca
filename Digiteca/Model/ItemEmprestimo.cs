@@ -8,14 +8,14 @@ namespace Digiteca.Model
 {
     public class ItemEmprestimo
     {
-        private string _codEmprestimo;
+        private int _codEmprestimo;
         private Usuario _usuario;
         private Exemplar _exemplar;
         private DateTime _dataEmp;
         private DateTime _dataLimite;
         private int _devolucao;
 
-        public ItemEmprestimo(string codEmprestimo, Usuario usuario, Exemplar exemplare, DateTime dataEmp, DateTime dataLimite, int devolucao)
+        public ItemEmprestimo(int codEmprestimo, Usuario usuario, Exemplar exemplare, DateTime dataEmp, DateTime dataLimite, int devolucao)
         {
             _codEmprestimo = codEmprestimo;
             _usuario = usuario;
@@ -25,7 +25,7 @@ namespace Digiteca.Model
             _devolucao = devolucao;
         }
 
-        public string CodEmprestimo { get => _codEmprestimo; set => _codEmprestimo = value; }
+        public int CodEmprestimo { get => _codEmprestimo; set => _codEmprestimo = value; }
         public DateTime DataEmp { get => _dataEmp; set => _dataEmp = value; }
         public DateTime DataLimite { get => _dataLimite; set => _dataLimite = value; }
         public int Devolucao { get => _devolucao; set => _devolucao = value; }

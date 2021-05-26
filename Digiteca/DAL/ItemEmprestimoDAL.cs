@@ -17,14 +17,16 @@ namespace Digiteca.DAL
             bool sucesso;
             try
             {
-                string sql = "insert into itememprestimo (codEmprestimo, codUsuario, codExemplar, dataEmp, dataLimite, devolucao) values (@codEmp, @codUsu, @codExe, @dataEmp, @dataLimite, @dev)";
+                string sql = "insert into itememprestimo (codExemplar, codEmprestimo, codUsuario, data, vencimento, Devolucao) " +
+                    "values (@codEmp, @codUsu, @codExe, @data, @vencimento, @dev)";
 
                 Dictionary<string, object> ps = new Dictionary<string, object>();
+                ps.Clear();
                 ps.Add("@codEmp", itememprestimo.CodEmprestimo);
                 ps.Add("@codUsu", itememprestimo.Usuario.Id);
                 ps.Add("@codExe", itememprestimo.Exemplar.CodSeqExemplar);
-                ps.Add("@dataEmp", itememprestimo.DataEmp);
-                ps.Add("@dataLimite", itememprestimo.DataLimite);
+                ps.Add("@data", itememprestimo.DataEmp);
+                ps.Add("@vencimento", itememprestimo.DataLimite);
                 ps.Add("@dev", itememprestimo.Devolucao);
 
                 _banco.AbrirConexao();
@@ -37,8 +39,9 @@ namespace Digiteca.DAL
                     sucesso = false;
                 _banco.FecharConexao();
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
                 sucesso = false;
             }
             return sucesso;

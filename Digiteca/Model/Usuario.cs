@@ -14,6 +14,12 @@ namespace Digiteca.Model
 
         public Usuario(){}
 
+        public Usuario(int id, string nome)
+        {
+            _id = id;
+            _nome = nome;
+        }
+
         public Usuario(int id, string nome, string cpf)
         {
             _id = id;

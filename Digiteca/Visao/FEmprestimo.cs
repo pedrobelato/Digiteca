@@ -64,22 +64,7 @@ namespace Digiteca.Visao
 
         private bool ValidarCampos()
         {
-            if(tbPesqLivro.Text == "")
-            {
-                return false;
-            }
-            else 
             if(tbUsuario.Text == "")
-            {
-                return false;
-            }
-            else
-            if(dtpDataEmprestimo.Value < DateTime.Now)
-            {
-                return false;
-            }
-            else
-            if(dtpDevolucao.Value < DateTime.Now)
             {
                 return false;
             }
@@ -116,6 +101,7 @@ namespace Digiteca.Visao
             novaLinha[0] = linha.Cells[0].Value;
             novaLinha[1] = linha.Cells[1].Value;
             novaLinha[2] = linha.Cells[2].Value;
+            novaLinha[3] = linha.Cells[3].Value;
             return novaLinha;
         }
 
@@ -198,7 +184,7 @@ namespace Digiteca.Visao
                 dtLivrosSel.Columns.Add("Código Livro");
                 dtLivrosSel.Columns.Add("Titulo do Livro");
                 dtLivrosSel.Columns.Add("Quantidade");
-                dtLivrosSel.Columns.Add("Nome da Editora");
+                dtLivrosSel.Columns.Add("ID da Editora");
                 dgvLivrosSel.DataSource = dtLivrosSel;
                 
             }
@@ -207,7 +193,7 @@ namespace Digiteca.Visao
                 dtLivrosSel.Columns.Add("Código Livro");
                 dtLivrosSel.Columns.Add("Titulo do Livro");
                 dtLivrosSel.Columns.Add("Quantidade");
-                dtLivrosSel.Columns.Add("Nome da Editora");
+                dtLivrosSel.Columns.Add("ID da Editora");
                 dgvLivrosSel.DataSource = dtLivrosSel;
             }
         }
