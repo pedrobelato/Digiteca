@@ -95,7 +95,7 @@ namespace Digiteca.Controller
         public (bool, string) Autenticar(int id, string senha)
         {
             bool sucesso;
-            string nome = "";
+            string nome;
             BibliotecaDAL bibliotecaDAL = new BibliotecaDAL();
             (sucesso, nome) = bibliotecaDAL.Autenticar(id, senha);
             return (sucesso, nome);
@@ -106,8 +106,6 @@ namespace Digiteca.Controller
             TituloDAL tituloDAL = new TituloDAL();
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             ReservaDAL reservaDAL = new ReservaDAL();
-            EditoraDAL editoraDAL = new EditoraDAL();
-            BibliotecaDAL bibliotecaDAL = new BibliotecaDAL();
             EmprestimoDAL emprestimoDAL = new EmprestimoDAL();
             ItemEmprestimoDAL itemDAL = new ItemEmprestimoDAL();
             ExemplarDAL exemplarDAL = new ExemplarDAL();

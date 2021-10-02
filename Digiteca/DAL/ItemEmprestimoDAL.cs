@@ -13,7 +13,7 @@ namespace Digiteca.DAL
 
         public bool GravarItemEmprestimo(ItemEmprestimo itememprestimo)
         {
-            int linhasAfetadas = 0;
+            int linhasAfetadas;
             bool sucesso;
             try
             {
