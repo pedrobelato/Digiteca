@@ -15,7 +15,7 @@ namespace Digiteca.DAL
 
         public MySQLPersistencia()
         {
-            _strCon = "Server=den1.mysql6.gear.host;Database=digiteca;Uid=digiteca;Pwd=livroxx-;";
+            _strCon = "Server=den1.mysql6.gear.host;Database=digiteca;Uid=digiteca;Pwd=livroxx-";
             _conexao = new MySqlConnection(_strCon);
             _comando = _conexao.CreateCommand();
         }
